@@ -1,0 +1,39 @@
+## dictunformat output file
+
+<!--
+This document is generated from source code. Do NOT edit.
+To update, modify plugins/dictunformat/__init__.py file, then run ./scripts/gen
+-->
+
+### General Information
+
+| Attribute | Value |
+| --------- | ----- |
+| Name | Dictunformat |
+| snake_case_name | dictunformat |
+| Description | dictunformat output file |
+| Extensions | `.dictunformat` |
+| Read support | Yes |
+| Write support | No |
+| Single-file | Yes |
+| Kind | 📝 text |
+| Wiki | [Dictd]() |
+| Website | [dictd/dictunformat.1.in - @cheusov/dictd]() |
+
+### Read options
+
+| Name | Default | Type | Comment |
+| ---- | ------- | ---- | ------- |
+| encoding | `utf-8` | str | Encoding/charset |
+| headword_separator | `;   ` | str | separator for headword and alternates |
+
+### Dictionary Applications/Tools
+
+| Name & Website | Source code | License | Platforms | Language |
+| -------------- | ----------- | ------- | --------- | -------- |
+| [dictunformat]() | ― | GPL | Linux |  |
+
+### Related Formats
+
+- [DICT.org file format (.index)](./dict_org.md)
+- [DICT.org dictfmt source file](./dict_org_source.md)

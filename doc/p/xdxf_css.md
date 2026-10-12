@@ -1,0 +1,42 @@
+## XDXF with CSS and JS
+
+<!--
+This document is generated from source code. Do NOT edit.
+To update, modify plugins/xdxf_css/__init__.py file, then run ./scripts/gen
+-->
+
+### General Information
+
+| Attribute | Value |
+| --------- | ----- |
+| Name | XdxfCss |
+| snake_case_name | xdxf_css |
+| Description | XDXF with CSS and JS |
+| Extensions |  |
+| Read support | Yes |
+| Write support | No |
+| Single-file | Yes |
+| Kind | 📝 text |
+| Wiki | [XDXF]() |
+| Website | [XDXF standard - @soshial/xdxf_makedict]() |
+
+### Read options
+
+| Name | Default | Type | Comment |
+| ---- | ------- | ---- | ------- |
+| html | `True` | bool | Entries are HTML |
+
+### Dependencies for reading
+
+PyPI Links: [lxml]()
+
+To install, run:
+
+```sh
+pip3 install lxml
+```
+
+### Related Formats
+
+- [XDXF (.xdxf)](./xdxf.md)
+- [XDXF Lax (.xdxf)](./xdxf_lax.md)

@@ -1,0 +1,13 @@
+[KOReader]
+web = ""
+source = ""
+platforms = [ "Android", "Amazon Kindle", "Kobo eReader", "PocketBook", "Cervantes",]
+license = "AGPLv3"
+plang = "Lua"
+
+["sdcv (command line)"]
+web = ""
+source = ""
+platforms = [ "Linux", "Windows", "Mac", "Android",]
+license = "GPLv2"
+plang = "C++"

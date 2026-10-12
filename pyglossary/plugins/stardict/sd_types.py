@@ -1,0 +1,30 @@
+"""
+StarDict binary record type definitions.
+
+Declares structs and constants for StarDict ``.idx`` and ``.dict`` record
+layouts, compression flags, and version fields. Shared by StarDict reader and
+writer modules.
+"""
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING, Any, Protocol, TypeVar
+
+if TYPE_CHECKING:
+	from collections.abc import Iterator
+
+__all__ = ["T_SdList"]
+
+T_SDListItem_contra = TypeVar("T_SDListItem_contra", contravariant=True)
+
+
+class T_SdList(Protocol[T_SDListItem_contra]):
+	"""T Sd List."""
+
+	def append(self, x: T_SDListItem_contra) -> None: ...
+
+	def __len__(self) -> int: ...
+
+	def __iter__(self) -> Iterator[Any]: ...
+
+	def sort(self) -> None: ...

@@ -1,0 +1,47 @@
+## StarDict (Merge Syns)
+
+<!--
+This document is generated from source code. Do NOT edit.
+To update, modify plugins/stardict_merge_syns/__init__.py file, then run ./scripts/gen
+-->
+
+### General Information
+
+| Attribute | Value |
+| --------- | ----- |
+| Name | StardictMergeSyns |
+| snake_case_name | stardict_merge_syns |
+| Description | StarDict (Merge Syns) |
+| Extensions |  |
+| Read support | No |
+| Write support | Yes |
+| Single-file | No |
+| Kind | 📁 directory |
+| Sort-on-write | Always |
+| Sort key | `stardict` |
+| Wiki | [StarDict]() |
+| Website | [huzheng.org/stardict]() |
+
+### Write options
+
+| Name | Default | Type | Comment |
+| ---- | ------- | ---- | ------- |
+| large_file | `False` | bool | Use idxoffsetbits=64 bits, for large files only |
+| dictzip | `False` | bool | Compress .dict file to .dict.dz |
+| sametypesequence |  | str | Definition format: h=html, m=plaintext, x=xdxf |
+| audio_icon | `True` | bool | Add glossary's audio icon |
+| autosqlite | `True` | bool | Auto-enable/disable SQLite option based on global SQLite mode. |
+| sqlite | `False` | bool | Use SQLite to limit memory usage. |
+| max_file_size | `0` | int | Max .dict file size before splitting into multiple glossaries;<br />0 means use default based on large_file (4 GiB or 64-bit limit).<br /> Examples: 100m, 1g |
+
+### Dictionary Applications/Tools
+
+| Name & Website | Source code | License | Platforms | Language |
+| -------------- | ----------- | ------- | --------- | -------- |
+| [KOReader]() | [@koreader/koreader]() | AGPLv3 | Android, Amazon Kindle, Kobo eReader, PocketBook, Cervantes | Lua |
+| [sdcv (command line)]() | [@Dushistov/sdcv]() | GPLv2 | Linux, Windows, Mac, Android | C++ |
+
+### Related Formats
+
+- [StarDict (.ifo)](./stardict.md)
+- [StarDict Textual File (.xml)](./stardict_textual.md)

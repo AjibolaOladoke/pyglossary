@@ -1,0 +1,26 @@
+"""
+CLI entry point for the bundled Jing validator.
+
+Configures logging and invokes ``main`` when the ``jing`` package is executed
+with ``python -m``. Used by the AppleDict writer to validate DTD/XML output.
+"""
+
+import logging
+import os
+import sys
+
+sys.path.append(os.path.abspath(os.path.dirname(__file__)))  # noqa: E402
+
+from .main import main
+
+log = logging.getLogger("root")
+console_output_handler = logging.StreamHandler(sys.stderr)
+console_output_handler.setFormatter(
+	logging.Formatter(
+		"%(asctime)s: %(message)s",
+	),
+)
+log.addHandler(console_output_handler)
+log.setLevel(logging.INFO)
+
+sys.exit(main())

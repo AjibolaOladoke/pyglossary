@@ -1,0 +1,21 @@
+[Dictd]
+web = ""
+platforms = [ "Linux",]
+license = "GPL"
+
+["GNOME Dictionary"]
+web = ""
+platforms = [ "Linux",]
+license = "GPL"
+
+["Xfce4 Dictionary"]
+web = ""
+platforms = [ "linux",]
+license = "GPL"
+
+[Ding]
+desc = "Graphical dictionary lookup program for Unix (Tk)"
+web = ""
+platforms = [ "linux",]
+license = "GPL"
+copyright = "Copyright (c) 1999 - 2016 Frank Richter"

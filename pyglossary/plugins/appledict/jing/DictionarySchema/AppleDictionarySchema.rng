@@ -1,0 +1,34 @@
+<!-- Dictionary Schema + XHTML Strict -->
+
+<grammar ns=""
+         xmlns="">
+
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href=""/>
+<include href="modules/dict-struct.rng"/>
+
+</grammar>

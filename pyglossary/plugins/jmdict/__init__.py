@@ -1,0 +1,65 @@
+"""
+PyGlossary JMdict format plugin.
+
+Japanese-Multilingual Dictionary XML used for Japanese lexical data. Read-only
+``Reader`` parses JMdict XML entries into headwords, readings, senses, and HTML
+definitions suitable for Yomichan and other targets.
+"""
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+from pyglossary.option import (
+	BoolOption,
+	IntOption,
+	StrOption,
+)
+
+from .reader import Reader
+
+if TYPE_CHECKING:
+	from pyglossary.option import Option
+
+__all__ = [
+	"Reader",
+	"description",
+	"enable",
+	"extensionCreate",
+	"extensions",
+	"kind",
+	"lname",
+	"name",
+	"optionsProp",
+	"singleFile",
+	"website",
+	"wiki",
+]
+
+enable = True
+lname = "jmdict"
+name = "JMDict"
+description = "JMDict (xml)"
+extensions = ()
+extensionCreate = ""
+singleFile = True
+kind = "text"
+wiki = ""
+website = (
+	"",
+	"The JMDict Project",
+)
+relatedFormats: list[str] = ["EDICT2", "JMnedict", "cc-kedict"]
+optionsProp: dict[str, Option] = {
+	"example_color": StrOption(
+		comment="Examples color",
+	),
+	"example_padding": IntOption(
+		comment="Padding for examples (in px)",
+		minim=0,
+		maxim=10_000,
+	),
+	"translitation": BoolOption(
+		comment="Add translitation (romaji) of keywords",
+	),
+}

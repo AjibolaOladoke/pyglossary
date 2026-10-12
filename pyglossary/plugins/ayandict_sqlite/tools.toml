@@ -1,0 +1,6 @@
+[AyanDict]
+web = ""
+source = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "GPL"
+plang = "Go"

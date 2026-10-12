@@ -1,0 +1,388 @@
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License version 3
+# as published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License <>
+# for more details.
+#
+# Copyright (C) 2023 Saeed Rasooli
+# Copyright (C) 2015 Igor Tkach
+#
+# This plugin is based on 
+"""
+Read Princeton WordNet lexical database files.
+
+Loads synsets, lemmas, and gloss text from WordNet data and index files. Builds
+glossary entries keyed by lemma with sense definitions and part-of-speech tags
+derived from WordNet relations.
+"""
+
+from __future__ import annotations
+
+import os
+import re
+import sys
+from collections import defaultdict
+from os.path import join
+from typing import TYPE_CHECKING
+
+from pyglossary.core import log
+
+if TYPE_CHECKING:
+	import io
+	from collections.abc import Iterator
+
+	from pyglossary.glossary_types import EntryType, ReaderGlossaryType
+
+
+__all__ = ["Reader"]
+
+
+# original expression from
+# 
+# "(?:[^\\"]+|\\.)*"
+# some examples don't have closing quote which
+# make the subn with this expression hang
+# _re_quotedText = re.compile(r'"(?:[^"]+|\.)*["|\n]')
+
+# make it a capturing group so that we can get rid of quotes
+_re_quotedText = re.compile(r'"([^"]+)"')
+
+_re_ref = re.compile(r"`(\w+)'")
+
+
+class SynSet:
+	"""Syn Set."""
+
+	def __init__(self, line: str | bytes) -> None:
+		self.line = line
+		if isinstance(line, bytes):
+			line = line.decode("utf-8")
+		meta, self.gloss = line.split("|")
+		self.meta_parts = meta.split()
+
+	@property
+	def offset(self) -> int:
+		return int(self.meta_parts[0])
+
+	# @property
+	# def lex_filenum(self) -> str:
+	# 	return self.meta_parts[1]
+
+	@property
+	def ss_type(self) -> str:
+		return self.meta_parts[2]
+
+	@property
+	def w_cnt(self) -> int:
+		return int(self.meta_parts[3], 16)
+
+	@property
+	def words(self) -> list[str]:
+		return [self.meta_parts[4 + 2 * i].replace("_", " ") for i in range(self.w_cnt)]
+
+	@property
+	def pointers(self) -> list[Pointer]:
+		p_cnt_index = 4 + 2 * self.w_cnt
+		p_cnt = self.meta_parts[p_cnt_index]
+		pointer_count = int(p_cnt)
+		start = p_cnt_index + 1
+		return [
+			Pointer(*self.meta_parts[start + i * 4 : start + (i + 1) * 4])
+			for i in range(pointer_count)
+		]
+
+	def __repr__(self) -> str:
+		return f"SynSet({self.line!r})"
+
+
+class PointerSymbols:
+	"""Pointer Symbols."""
+
+	n = {
+		"!": "Antonyms",
+		"@": "Hypernyms",
+		"@i": "Instance hypernyms",
+		"~": "Hyponyms",
+		"~i": "Instance hyponyms",
+		"#m": "Member holonyms",
+		"#s": "Substance holonyms",
+		"#p": "Part holonyms",
+		"%m": "Member meronyms",
+		"%s": "Substance meronyms",
+		"%p": "Part meronyms",
+		"=": "Attributes",
+		"+": "Derivationally related forms",
+		";c": "Domain of synset - TOPIC",
+		"-c": "Member of this domain - TOPIC",
+		";r": "Domain of synset - REGION",
+		"-r": "Member of this domain - REGION",
+		";u": "Domain of synset - USAGE",
+		"-u": "Member of this domain - USAGE",
+		"^": "Also see",
+	}
+
+	v = {
+		"!": "Antonyms",
+		"@": "Hypernyms",
+		"~": "Hyponyms",
+		"*": "Entailments",
+		">": "Cause",
+		"^": "Also see",
+		"$": "Verb group",
+		"+": "Derivationally related forms",
+		";c": "Domain of synset - TOPIC",
+		";r": "Domain of synset - REGION",
+		";u": "Domain of synset - USAGE",
+	}
+
+	a = s = {
+		"!": "Antonyms",
+		"+": "Derivationally related forms",
+		"&": "Similar to",
+		"<": "Participle of verb",
+		"\\": "Pertainyms",
+		"=": "Attributes",
+		"^": "Also see",
+		";c": "Domain of synset - TOPIC",
+		";r": "Domain of synset - REGION",
+		";u": "Domain of synset - USAGE",
+	}
+
+	r = {
+		"!": "Antonyms",
+		"\\": "Derived from adjective",
+		"+": "Derivationally related forms",
+		";c": "Domain of synset - TOPIC",
+		";r": "Domain of synset - REGION",
+		";u": "Domain of synset - USAGE",
+		"^": "Also see",
+	}
+
+
+class Pointer:
+	"""Pointer."""
+
+	def __init__(self, symbol: str, offset: str, pos: str, source_target: str) -> None:
+		self.symbol = symbol
+		self.offset = int(offset)
+		self.pos = pos
+		self.source_target = source_target
+		self.source = int(source_target[:2], 16)
+		self.target = int(source_target[2:], 16)
+
+	def __repr__(self) -> str:
+		return (
+			f"Pointer({self.symbol!r}, {self.offset!r}, "
+			f"{self.pos!r}, {self.source_target!r})"
+		)
+
+
+class WordNet:
+	"""Word Net."""
+
+	article_template = "<h1>%s</h1><span>%s</span>"
+	synSetTypes = {
+		"n": "n.",
+		"v": "v.",
+		"a": "adj.",
+		"s": "adj. satellite",
+		"r": "adv.",
+	}
+
+	file2pos = {
+		"data.adj": ["a", "s"],
+		"data.adv": ["r"],
+		"data.noun": ["n"],
+		"data.verb": ["v"],
+	}
+
+	def __init__(self, wordnetdir: str, gram_color: str) -> None:
+		self.wordnetdir = wordnetdir
+		self.gram_color = gram_color
+		self.collector: dict[str, list[str]] = defaultdict(list)
+
+	@staticmethod
+	def iterlines(dict_dir: str) -> Iterator[str]:
+		for name in os.listdir(dict_dir):
+			if not name.startswith("data."):
+				continue
+			with open(os.path.join(dict_dir, name), encoding="utf-8") as f:
+				for line in f:
+					if not line.startswith("  "):
+						yield line
+
+	# PLR0912 Too many branches (16 > 12)
+	def prepare(self) -> None:  # noqa: PLR0912
+		synSetTypes = self.synSetTypes
+		file2pos = self.file2pos
+
+		dict_dir = self.wordnetdir
+		gram_color = self.gram_color
+
+		files: dict[str, io.TextIOWrapper] = {}
+		for name in os.listdir(dict_dir):
+			if name.startswith("data.") and name in file2pos:
+				f = open(os.path.join(dict_dir, name), encoding="utf-8")  # noqa: SIM115
+				for key in file2pos[name]:
+					files[key] = f
+
+		def href(word: str) -> str:
+			return f'<a href="{word}">{word}</a>'
+
+		for lineIndex, line in enumerate(self.iterlines(dict_dir)):
+			if lineIndex % 100 == 0 and lineIndex > 0:
+				sys.stdout.write(".")
+				sys.stdout.flush()
+			if not line or not line.strip():
+				continue
+			synset = SynSet(line)
+			gloss_with_examples, _ = _re_quotedText.subn(
+				lambda x: f'<cite class="ex">{x.group(1)}</cite>',
+				synset.gloss,
+			)
+			gloss_with_examples, _ = _re_ref.subn(
+				lambda x: href(x.group(1)),
+				gloss_with_examples,
+			)
+
+			words = synset.words
+
+			gram = synSetTypes[synset.ss_type]
+			gram_html = f'<font class="pos grammar" color="{gram_color}">{gram}</font>'
+			gloss_with_examples = gram_html + gloss_with_examples
+
+			for wordIndex, word in enumerate(words):
+				# TODO: move this block to a func
+				synonyms_links = ", ".join(href(w) for w in words if w != word)
+				synonyms_str = (
+					f'<br/><small class="co">Synonyms:</small> {synonyms_links}'
+					if synonyms_links
+					else ""
+				)
+				pointers = defaultdict(list)
+				for pointer in synset.pointers:
+					if (
+						pointer.source
+						and pointer.target
+						and pointer.source - 1 != wordIndex
+					):
+						continue
+					symbol = pointer.symbol
+					if symbol and symbol[:1] in {";", "-"}:
+						continue
+					try:
+						symbol_desc = getattr(PointerSymbols, synset.ss_type)[symbol]
+					except KeyError:
+						log.warning(
+							f"unknown pointer symbol {symbol} for {synset.ss_type} ",
+						)
+						symbol_desc = symbol
+
+					data_file = files[pointer.pos]
+					data_file.seek(pointer.offset)
+					referenced_synset = SynSet(data_file.readline())
+					if pointer.source == pointer.target == 0:
+						pointers[symbol_desc] = [
+							w for w in referenced_synset.words if w not in words
+						]
+					else:
+						referenced_word = referenced_synset.words[pointer.target - 1]
+						if referenced_word not in pointers[symbol_desc]:
+							pointers[symbol_desc].append(referenced_word)
+
+				pointers_str = "".join(
+					f'<br/><small class="co">{symbol_desc}:</small> '
+					+ ", ".join(href(w) for w in referenced_words)
+					for symbol_desc, referenced_words in pointers.items()
+					if referenced_words
+				)
+
+				text = gloss_with_examples + synonyms_str + pointers_str
+				self.collector[word].append(text)
+
+		sys.stdout.write("\n")
+		sys.stdout.flush()
+
+	def process(self) -> Iterator[tuple[str, str]]:
+		article_template = self.article_template
+
+		for title, articles in self.collector.items():
+			if not articles:
+				log.warning(f"empty articles: {title=}")
+				continue
+
+			if len(articles) == 1:
+				yield title, article_template % (title, articles[0])
+				continue
+
+			yield (
+				title,
+				article_template
+				% (
+					title,
+					"<ol>" + "".join(f"<li>{ap}</li>" for ap in articles) + "</ol>",
+				),
+			)
+
+
+class Reader:
+	"""Read Wordnet glossary files."""
+
+	useByteProgress = False
+	_gram_color: str = "green"
+
+	def __init__(self, glos: ReaderGlossaryType) -> None:
+		self._glos = glos
+		self._filename = ""
+		self._entryCount = 0
+		self.wordnet: WordNet | None = None
+
+	def countResourceFiles(self) -> int:
+		return 0
+
+	def __len__(self) -> int:
+		return self._entryCount
+
+	def _readCopyrightLine(self) -> str | None:
+		with open(join(self._filename, "index.noun"), encoding="utf-8") as file_:
+			for index, line in enumerate(file_):
+				if index > 30:
+					break
+				if " Copyright " in line:
+					return line
+		return None
+
+	def open(self, filename: str) -> None:
+		self._filename = filename
+
+		copyrightLine = self._readCopyrightLine()
+		if copyrightLine:
+			words = copyrightLine.strip().split(" ")
+			self._glos.setInfo("copyright", " ".join(words[1:]))
+			pos = words.index("Copyright")
+			try:
+				year = int(words[pos + 1])
+			except ValueError:
+				log.warning(f"unexpected line: {copyrightLine}")
+			else:
+				self._glos.setInfo("creationTime", f"{year}-01-01")
+
+		self.wordnet = WordNet(filename, gram_color=self._gram_color)
+		log.info("Running wordnet.prepare()")
+		self.wordnet.prepare()
+
+		# TODO: metadata
+
+	def close(self) -> None:
+		self.wordnet = None
+
+	def __iter__(self) -> Iterator[EntryType]:
+		if self.wordnet is None:
+			raise ValueError("self.wordnet is None")
+		glos = self._glos
+		for word, defi in self.wordnet.process():
+			yield glos.newEntry(word, defi)

@@ -1,0 +1,54 @@
+"""
+PyGlossary AppleDict binary format plugin.
+
+macOS/iOS ``.dictionary`` and ``.data`` binary packages. Read-only plugin that
+extracts keys, HTML definitions, plist metadata, and keyed index streams from
+installed Apple Dictionary bundles.
+"""
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+from pyglossary.option import BoolOption
+
+from .reader import Reader
+
+if TYPE_CHECKING:
+	from pyglossary.option import Option
+
+__all__ = [
+	"Reader",
+	"description",
+	"enable",
+	"extensionCreate",
+	"extensions",
+	"kind",
+	"lname",
+	"name",
+	"optionsProp",
+	"singleFile",
+	"website",
+	"wiki",
+]
+
+enable = True
+lname = "appledict_bin"
+name = "AppleDictBin"
+description = "AppleDict Binary"
+extensions = (".dictionary", ".data")
+extensionCreate = ""
+singleFile = True
+kind = "binary"
+wiki = ""
+website = (
+	"",
+	"Dictionary User Guide for Mac",
+)
+relatedFormats: list[str] = ["AppleDict"]
+optionsProp: dict[str, Option] = {
+	"html": BoolOption(comment="Entries are HTML"),
+	"html_full": BoolOption(
+		comment="Turn every entry's definition into an HTML document",
+	),
+}

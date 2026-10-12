@@ -1,0 +1,4 @@
+[dictfmt]
+web = ""
+platforms = [ "Linux",]
+license = "GPL"

@@ -1,0 +1,103 @@
+#!/usr/bin/env bash
+set -e
+
+function yes_or_no {
+	while true; do
+		read -r -p "$* [y/n]: " yn
+		case $yn in
+		[Yy]*) return 0 ;;
+		[Nn]*)
+			echo "Aborted"
+			return 1
+			;;
+		esac
+	done
+}
+
+# function pip-has-version() {
+# 	pip $PIP_OPTS index versions pyglossary --pre --ignore-requires-python | grep "$1,"
+# }
+
+myDir=$(dirname "$0")
+scriptsDir=$(dirname "$myDir")
+CUR_VERSION=$($scriptsDir/version-core)
+
+MAJOR_FLAG=
+VERSION=
+while [[ $# -gt 0 ]]; do
+	case $1 in
+	--major) MAJOR_FLAG=1; shift ;;
+	-*) echo "Unknown option: $1"; exit 1 ;;
+	*) VERSION=$1; shift ;;
+	esac
+done
+
+if [ -z "$VERSION" ]; then
+	echo "Usage: $0 [--major] VERSION"
+	echo "Current version: $CUR_VERSION"
+	exit 1
+fi
+
+
+if [ $(git rev-parse --abbrev-ref HEAD) != "master" ] ; then
+	echo "Not in master branch"
+	exit 1
+fi
+
+set -x
+
+$scriptsDir/check-python-version
+
+if ! git cat-file tag "$VERSION" 2>/dev/null ; then
+	VALIDATE_ARGS=()
+	[ -n "$MAJOR_FLAG" ] && VALIDATE_ARGS+=(--major)
+	python3 "$myDir/validate-release-tag.py" "${VALIDATE_ARGS[@]}" "$VERSION"
+fi
+
+if git cat-file tag $VERSION 2>/dev/null ; then
+	CUR_VERSION=$(git describe --abbrev=0 --tags "$VERSION^")
+	# CUR_VERSION=$(git describe --abbrev=0 --tags $(git rev-list --tags --skip=1 --max-count=1))
+	echo CUR_VERSION=$CUR_VERSION
+	TAG_EXISTS=1
+else
+	$scriptsDir/version-set.py "$VERSION"
+	git add setup.py pyglossary/core.py pyproject.toml about _license-dialog
+	git commit -m "version $VERSION" || echo "------ Already committed"
+	git -p show || true
+	TAG_EXISTS=
+fi
+
+
+git -p log || true
+
+echo "Press Enter to continue"
+read
+
+echo "Pushing to origin..."
+git push
+
+echo "Waiting for pypi release..."
+while ! pip $PIP_OPTS install "pyglossary==$VERSION"; do
+	sleep 5
+done
+
+echo "-------------- Check version in GUI: --------------"
+
+~/.local/bin/pyglossary || true
+
+yes_or_no "Continue creating the release?" || exit 1
+
+if [ -z $TAG_EXISTS ] ; then
+	echo "Creating tag $VERSION"
+	git tag -a -m "version $VERSION" "$VERSION"
+fi
+
+echo "Pushing tag to origin..."
+git push origin "$VERSION"
+
+MD_PATH=$(realpath $scriptsDir/../doc/releases/$VERSION.md)
+
+python3 "$scriptsDir/create-release/create-release-notes.py" --prev-tag "$CUR_VERSION" "$VERSION"
+
+echo "Created $MD_PATH"
+xdg-open "$MD_PATH"

@@ -1,0 +1,77 @@
+"""
+PyGlossary Wiktextract format plugin.
+
+JSON Lines dumps produced by the Wiktextract Wiktionary extraction tool
+(``.jsonl``). Read-only ``Reader`` maps lemma objects to HTML entries with
+senses, etymology, tags, and pronunciations.
+"""
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+from pyglossary.option import (
+	BoolOption,
+	ListOption,
+	StrOption,
+)
+
+from .reader import Reader
+
+if TYPE_CHECKING:
+	from pyglossary.option import Option
+
+__all__ = [
+	"Reader",
+	"description",
+	"enable",
+	"extensionCreate",
+	"extensions",
+	"kind",
+	"lname",
+	"name",
+	"optionsProp",
+	"singleFile",
+	"website",
+	"wiki",
+]
+
+enable = True
+lname = "wiktextract"
+name = "Wiktextract"
+description = "Wiktextract (.jsonl)"
+extensions = (".jsonl",)
+extensionCreate = ".jsonl"
+singleFile = True
+kind = "text"
+wiki = ""
+website = (
+	"",
+	"@tatuylonen/wiktextract",
+)
+optionsProp: dict[str, Option] = {
+	"resources": BoolOption(
+		comment="Enable resources / data files",
+	),
+	"word_title": BoolOption(
+		comment="Add headwords title to beginning of definition",
+	),
+	"pron_color": StrOption(
+		comment="Pronunciation color",
+	),
+	"gram_color": StrOption(
+		comment="Grammar color",
+	),
+	"example_padding": StrOption(
+		comment="Padding for examples (css value)",
+	),
+	"audio": BoolOption(
+		comment="Enable audio",
+	),
+	"audio_formats": ListOption(
+		comment="List of audio formats to use",
+	),
+	"categories": BoolOption(
+		comment="Enable categories",
+	),
+}

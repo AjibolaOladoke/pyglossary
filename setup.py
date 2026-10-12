@@ -1,0 +1,183 @@
+#!/usr/bin/env python3
+
+
+import logging
+import os
+import re
+import sys
+from glob import glob
+from os.path import dirname, isdir, join
+
+from setuptools import find_packages, setup
+
+VERSION = "5.4.2"
+log = logging.getLogger("root")
+relRootDir = "share/pyglossary"
+
+
+def getGitVersion(gitDir: str) -> str:
+	import subprocess
+
+	try:
+		outputB, _err = subprocess.Popen(
+			[
+				"git",
+				"--git-dir",
+				gitDir,
+				"describe",
+				"--always",
+			],
+			stdout=subprocess.PIPE,
+		).communicate()
+	except Exception as e:
+		sys.stderr.write(str(e) + "\n")
+		return ""
+	# if _err is None:
+	return outputB.decode("utf-8").strip()
+
+
+def getPipSafeVersion() -> str:
+	if os.getenv("NO_GIT_VERSION"):
+		return VERSION
+	gitDir = ".git"
+	if isdir(gitDir):
+		version = getGitVersion(gitDir)
+		if version:
+			return "-".join(version.split("-")[:2])
+	return VERSION
+
+
+def checkoutGitLfsFiles() -> None:
+	if not isdir(".git"):
+		return
+	import subprocess
+
+	try:
+		subprocess.run(
+			["git", "lfs", "checkout"],
+			check=True,
+			stdout=subprocess.DEVNULL,
+			stderr=subprocess.DEVNULL,
+		)
+	except (subprocess.CalledProcessError, OSError):
+		log.warning(
+			"git-lfs is not installed or failed; "
+			"LFS-tracked files (e.g. res/pyglossary.svg) may be "
+			"packaged as pointer files"
+		)
+
+
+checkoutGitLfsFiles()
+
+
+root_data_file_names = [
+	"about",
+	"LICENSE",
+	"_license-dialog",
+	"Dockerfile",
+	"pyproject.toml",
+	"help",
+	"AUTHORS",
+	"config.json",
+]
+
+res_files = (
+	glob("res/*.png")
+	+ glob("res/*.svg")
+	+ [
+		"res/pyglossary.ico",
+		"res/resources.xml",
+	]
+)
+
+sep = "\\\\" if os.sep == "\\" else os.sep
+
+package_data = {
+	"": root_data_file_names,
+	"plugins-meta": [
+		"index.json",
+		"tools/*",
+	],
+	"pyglossary": [
+		"*.py",
+		"plugins/*",
+		"langs/*",
+		"plugin_lib/*.py",
+		"plugin_lib/py*/*.py",
+		"sort_modules/*.py",
+		"ui/*.py",
+		"ui/progressbar/*.py",
+		"ui/gtk3_utils/*.py",
+		"ui/gtk4_utils/*.py",
+		"ui/tools/*.py",
+		"ui/wcwidth/*.py",
+		"ui/ui_web/*.py",
+		"ui/ui_web/*.html",
+		"ui/ui_web/*.ico",
+		"ui/ui_web/*.css",
+		"ui/ui_web/*.js",
+		"xdxf/xdxf.xsl",
+		"xdxf/*.py",
+		"repro_zipfile/*.py",
+	]
+	+ res_files
+	+ [
+		# safest way found so far to include every resource of plugins
+		# producing plugins/pkg/*, plugins/pkg/sub1/*, ... except .pyc/.pyo
+		re.sub(
+			rf"^.*?pyglossary{sep}(?=plugins)",
+			"",
+			join(dirpath, fname),
+		)
+		for top in glob(
+			join(dirname(__file__), "pyglossary", "plugins"),
+		)
+		for dirpath, _, files in os.walk(top)
+		for fname in files
+		if not fname.endswith((".pyc", ".pyo"))
+	],
+}
+
+
+with open("README.md", encoding="utf-8") as fh:
+	long_description = fh.read()
+
+
+setup(
+	name="pyglossary",
+	version=getPipSafeVersion(),
+	python_requires=">=3.12.0",
+	description="A tool for converting dictionary files aka glossaries.",
+	long_description_content_type="text/markdown",
+	long_description=long_description,
+	author="Saeed Rasooli",
+	author_email="saeed.gnu@gmail.com",
+	license="GPL-3.0-or-later",
+	url="",
+	packages=find_packages(),
+	entry_points={
+		"console_scripts": [
+			"pyglossary = pyglossary.ui.main:main",
+			"pyglossary-diff = pyglossary.ui.tools.diff_glossary:main",
+		],
+	},
+	package_data=package_data,
+	# without data_files `pip install --user .` makes a broken installation
+	data_files=[
+		(relRootDir, root_data_file_names),
+		(f"{relRootDir}/plugins-meta", ["plugins-meta/index.json"]),
+		(f"{relRootDir}/res", res_files),
+	],
+	extras_require={
+		"full": [
+			"lxml",
+			"beautifulsoup4",
+			"pyicu",
+			"PyYAML",
+			"marisa-trie",
+			"libzim",
+			"python-lzo",
+			"html5lib",
+		],
+	},
+)

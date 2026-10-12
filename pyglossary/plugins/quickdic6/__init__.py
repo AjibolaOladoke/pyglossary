@@ -1,0 +1,58 @@
+"""
+PyGlossary QuickDic 6 format plugin.
+
+QuickDic Android dictionary packages (``.quickdic`` and versioned ZIP layouts).
+Registers ``Reader`` and ``Writer`` for the QuickDic v6 binary schema with
+locale-aware term ordering.
+"""
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+from pyglossary.flags import NEVER
+from pyglossary.option import StrOption
+
+from .reader import Reader
+from .writer import Writer
+
+if TYPE_CHECKING:
+	from pyglossary.option import Option
+
+__all__ = [
+	"Reader",
+	"Writer",
+	"description",
+	"enable",
+	"extensionCreate",
+	"extensions",
+	"kind",
+	"lname",
+	"name",
+	"optionsProp",
+	"singleFile",
+	"website",
+	"wiki",
+]
+
+enable = True
+lname = "quickdic6"
+name = "QuickDic6"
+description = "QuickDic version 6 (.quickdic)"
+extensions = (".quickdic", ".quickdic.v006.zip")
+extensionCreate = ".quickdic"
+singleFile = True
+sortOnWrite = NEVER
+
+kind = "binary"
+wiki = ""
+website = (
+	"",
+	"github.com/rdoeffinger/Dictionary",
+)
+# 
+optionsProp: dict[str, Option] = {
+	"normalizer_rules": StrOption(
+		comment="ICU normalizer rules to use for index sorting",
+	),
+}

@@ -1,0 +1,45 @@
+"""
+PyGlossary Makindo Medical format plugin.
+
+SQLite3 medical reference data from Makindo. Read-only ``Reader`` queries
+Makindo schema tables and maps records to glossary entries.
+"""
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+from .reader import Reader
+
+if TYPE_CHECKING:
+	from pyglossary.option import Option
+
+__all__ = [
+	"Reader",
+	"description",
+	"enable",
+	"extensionCreate",
+	"extensions",
+	"kind",
+	"lname",
+	"name",
+	"optionsProp",
+	"singleFile",
+	"website",
+	"wiki",
+]
+
+enable = True
+lname = "makindo_medical"
+name = "MakindoMedical"
+description = "Makindo Medical Reference (SQLite3)"
+extensions = ()
+extensionCreate = ".db"
+singleFile = True
+kind = "binary"
+wiki = ""
+website = (
+	"",
+	"Makindo.co.uk Comprehensive Medical Encyclopedia",
+)
+optionsProp: dict[str, Option] = {}

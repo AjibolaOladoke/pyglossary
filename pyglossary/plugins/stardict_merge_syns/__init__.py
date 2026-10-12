@@ -1,0 +1,110 @@
+"""
+PyGlossary StarDict merge syns format plugin.
+
+StarDict writer variant that merges synonym lines into main entries before
+writing. Write-only ``Writer`` targets the usual ``-stardict/`` directory
+layout with consolidated synonym handling.
+"""
+
+from __future__ import annotations
+
+import os
+from typing import TYPE_CHECKING
+
+from pyglossary.flags import ALWAYS, DEFAULT_YES
+from pyglossary.option import (
+	BoolOption,
+	FileSizeOption,
+	StrOption,
+)
+
+from .writer import Writer
+
+if TYPE_CHECKING:
+	from pyglossary.option import Option
+
+__all__ = [
+	"Writer",
+	"description",
+	"enable",
+	"extensionCreate",
+	"extensions",
+	"kind",
+	"lname",
+	"name",
+	"optionsProp",
+	"singleFile",
+	"website",
+	"wiki",
+]
+
+
+enable = True
+lname = "stardict_merge_syns"
+name = "StardictMergeSyns"
+description = "StarDict (Merge Syns)"
+extensions = ()
+extensionCreate = "-stardict/"
+singleFile = False
+sortOnWrite = ALWAYS
+sortKeyName = "stardict"
+sortEncoding = "utf-8"
+
+kind = "directory"
+wiki = ""
+website = (
+	"",
+	"huzheng.org/stardict",
+)
+# 
+# 
+# 
+# 
+
+relatedFormats: list[str] = ["Stardict", "StardictTextual"]
+optionsProp: dict[str, Option] = {
+	"large_file": BoolOption(
+		comment="Use idxoffsetbits=64 bits, for large files only",
+	),
+	"max_file_size": FileSizeOption(
+		comment=(
+			"Max .dict file size before splitting into multiple glossaries;\n"
+			"0 means use default based on large_file (4 GiB or 64-bit limit).\n"
+			" Examples: 100m, 1g"
+		),
+	),
+	"dictzip": BoolOption(
+		comment="Compress .dict file to .dict.dz",
+	),
+	"sametypesequence": StrOption(
+		values=["", "h", "m", "x", "-"],
+		comment="Definition format: h=html, m=plaintext, x=xdxf",
+	),
+	"xdxf_to_html": BoolOption(
+		comment="Convert XDXF entries to HTML",
+	),
+	"xsl": BoolOption(
+		comment="Use XSL transformation",
+	),
+	"unicode_errors": StrOption(
+		values=[
+			"strict",  # raise a UnicodeDecodeError exception
+			"ignore",  # just leave the character out
+			"replace",  # use U+FFFD, REPLACEMENT CHARACTER
+			"backslashreplace",  # insert a \xNN escape sequence
+		],
+		comment="What to do with Unicode decoding errors",
+	),
+	"audio_icon": BoolOption(
+		comment="Add glossary's audio icon",
+	),
+	"autosqlite": BoolOption(
+		comment="Auto-enable/disable SQLite option based on global SQLite mode.",
+	),
+	"sqlite": BoolOption(
+		comment="Use SQLite to limit memory usage.",
+	),
+}
+
+if os.getenv("PYGLOSSARY_STARDICT_NO_FORCE_SORT") == "1":
+	sortOnWrite = DEFAULT_YES

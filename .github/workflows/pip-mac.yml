@@ -1,0 +1,36 @@
+name: pip-macOS
+
+on:
+  push:
+    branches: ["master", "dev", "dev2", "github-action-macos"]
+
+jobs:
+  pip-git-url:
+    name: pip install git+...
+    runs-on: macos-latest
+    steps:
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.13
+      - name: pip install git+...
+        id: create-release
+        run: python -m pip install git+
+
+  pip-local:
+    name: pip install .
+    runs-on: macos-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.13
+      - name: Fetch tags
+        run: git fetch --prune --unshallow --tags
+      - name: List tags
+        run: git tag
+      - name: pip install .
+        id: create-release
+        run: python -m pip install .

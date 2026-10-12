@@ -1,0 +1,59 @@
+"""
+PyGlossary Lingoes LDF format plugin.
+
+Lingoes dictionary source files (``.ldf``) with Lingoes markup. Registers
+``Reader`` and ``Writer`` for the LDF text format used by the Lingoes desktop
+dictionary application.
+"""
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+from pyglossary.option import (
+	BoolOption,
+	EncodingOption,
+	NewlineOption,
+)
+
+from .reader import Reader
+from .writer import Writer
+
+if TYPE_CHECKING:
+	from pyglossary.option import Option
+
+__all__ = [
+	"Reader",
+	"Writer",
+	"description",
+	"enable",
+	"extensionCreate",
+	"extensions",
+	"kind",
+	"lname",
+	"name",
+	"optionsProp",
+	"singleFile",
+	"website",
+	"wiki",
+]
+
+enable = True
+lname = "lingoes_ldf"
+name = "LingoesLDF"
+description = "Lingoes Source (.ldf)"
+extensions = (".ldf",)
+extensionCreate = ".ldf"
+singleFile = True
+kind = "text"
+wiki = ""
+website = (
+	"",
+	"Lingoes.net",
+)
+relatedFormats: list[str] = ["ABBYYLingvoDSL"]
+optionsProp: dict[str, Option] = {
+	"newline": NewlineOption(),
+	"resources": BoolOption(comment="Enable resources / data files"),
+	"encoding": EncodingOption(),
+}

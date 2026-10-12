@@ -1,0 +1,29 @@
+#!/usr/bin/env python
+
+import os
+import sys
+from os.path import abspath, dirname
+
+rootDir = dirname(dirname(abspath(__file__)))
+sys.path.insert(0, rootDir)
+
+from pyglossary.glossary_v2 import Glossary
+from pyglossary.ui.tools.view_glossary import viewGlossary
+
+
+def main() -> None:
+	filename = sys.argv[1]
+	formatName = None
+	if len(sys.argv) > 2:
+		formatName = sys.argv[2]
+
+	glos = Glossary(ui=None)
+	glos.updateEntryFilters()
+	glos.removeHtmlTagsAll()
+
+	filename = os.path.expanduser(filename)
+	viewGlossary(filename, formatName=formatName, glos=glos)
+
+
+if __name__ == "__main__":
+	main()

@@ -1,0 +1,45 @@
+## JMDict (xml)
+
+<!--
+This document is generated from source code. Do NOT edit.
+To update, modify plugins/jmdict/__init__.py file, then run ./scripts/gen
+-->
+
+### General Information
+
+| Attribute | Value |
+| --------- | ----- |
+| Name | JMDict |
+| snake_case_name | jmdict |
+| Description | JMDict (xml) |
+| Extensions |  |
+| Read support | Yes |
+| Write support | No |
+| Single-file | Yes |
+| Kind | 📝 text |
+| Wiki | [JMdict]() |
+| Website | [The JMDict Project]() |
+
+### Read options
+
+| Name | Default | Type | Comment |
+| ---- | ------- | ---- | ------- |
+| example_padding | `10` | int | Padding for examples (in px) |
+| example_color |  | str | Examples color |
+| translitation | `False` | bool | Add translitation (romaji) of keywords |
+
+### Dependencies for reading
+
+PyPI Links: [lxml](), [python-romkan-ng]()
+
+To install, run:
+
+```sh
+pip3 install lxml python-romkan-ng
+```
+
+### Related Formats
+
+- [EDICT2 (CEDICT) (.u8)](./edict2.md)
+- [JMnedict](./jmnedict.md)
+- [cc-kedict](./cc_kedict.md)

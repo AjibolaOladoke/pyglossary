@@ -1,0 +1,175 @@
+name: Build for MacOS x86_64 / arm64 (Slint)
+# ALSO SEE: pyicu: 
+
+on:
+  push:
+    branches:
+      - 'build-release-slint'
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  UV_SYSTEM_PYTHON: 0
+  PYTHONWARNINGS: ignore::EncodingWarning
+  PYTHONWARNDEFAULTENCODING: 0
+  APPNAME: PyGlossarySlint
+  DIST_DIR: dist.nuitka.slint
+  SLINT_VERSION: 1.17.0b2
+  HOMEBREW_NO_INSTALL_CLEANUP: true
+  HOMEBREW_NO_ENV_HINTS: true
+  HOMEBREW_CLEANUP_MAX_AGE_DAYS: 999
+  HOMEBREW_NO_ANALYTICS: true
+  HOMEBREW_NO_AUTO_UPDATE: true
+  MAIN_SCRIPT: main.py
+  RESOURCE_DIR: "resources"
+
+jobs:
+  build_macos_slint:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      # DOC: 
+      matrix:
+        python-version: ['3.13']
+        os:
+          - macos-14
+          - macos-15
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+          fetch-depth: 0
+          fetch-tags: true
+          # TODO: !!! comment out before merging to master
+          # ref: build-release
+
+      - name: Update brew
+        run: brew update
+
+      - name: Install brew dependencies
+        run: python3 scripts/ci/mac/slint/build.py deps-brew
+
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install uv
+        # 
+        uses: astral-sh/setup-uv@v6
+        with:
+          version: "latest"
+
+      - name: Cache uv
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/uv
+          key: ${{ runner.os }}-uv-slint-${{ matrix.python-version }}
+
+      - name: Create venv
+        env:
+          PYTHON_VERSION: ${{ matrix.python-version }}
+        run: |
+          python3 scripts/ci/mac/slint/build.py venv
+          echo "VIRTUAL_ENV=$PWD/.venv" >> $GITHUB_ENV
+          echo "$PWD/.venv/bin" >> $GITHUB_PATH
+
+      - name: set vars
+        id: envconf
+        run: |
+          echo "VERSION=$(git describe --abbrev=0)" >> $GITHUB_ENV
+          echo "VERSION_WITH_HASH=$(git describe)" >> $GITHUB_ENV
+
+      - name: Install pyglossary dependencies
+        run: python3 scripts/ci/mac/slint/build.py deps-python
+
+      - name: Patch sources for nuitka build
+        run: python3 scripts/ci/mac/slint/build.py patch
+
+      - name: nuitka Build
+        env:
+          PYTHONWARNDEFAULTENCODING: 0
+        run: python3 scripts/ci/mac/slint/build.py nuitka-build
+
+      - name: Copy assets
+        run: python3 scripts/ci/mac/slint/build.py copy-assets
+
+      - name: Create DMG
+        run: python3 scripts/ci/mac/slint/build.py dmg
+
+      - name: Upload Artifacts DMG
+        if: true
+        uses: actions/upload-artifact@v7
+        with:
+          overwrite: true
+          # 
+          name: ${{ github.event.repository.name }}-slint-${{ matrix.os }}-py${{ matrix.python-version }}-${{ github.sha }}-${{ env.VERSION_WITH_HASH }}-DMG
+          path: |
+            **/*.dmg
+
+  release:
+    if: true
+    needs: [build_macos_slint]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+          # ref: build-release # comment out before merge
+
+      - name: Set release vars
+        run: |
+          echo "VERSION=$(git describe --abbrev=0)" >> $GITHUB_ENV
+          echo "VERSION_WITH_HASH=$(git describe)" >> $GITHUB_ENV
+
+      - name: Download artifacts
+        uses: actions/download-artifact@v8
+        with:
+          path: ./artifacts
+          merge-multiple: true
+
+      - name: Show generated artifacts
+        run: |
+          pwd
+          echo ${{ github.workspace }}/artifacts
+          find ${{ github.workspace }}/artifacts
+
+      - name: make release
+        uses: ncipollo/release-action@v1
+        # 
+        with:
+          name: ${{ env.VERSION }}
+          body: |
+            ### ${{ github.event.repository.name }}-${{ env.VERSION_WITH_HASH }}
+            ## macOS (Slint UI, beta)
+            - __IMPORTANT__: macOS Intel-x64 & ARM64 DMG, built with the Slint UI (`--slint`/`--ui=slint`)
+
+            <blockquote>
+            <details>
+              <summary> :bulb: How to fix macOS security warning - "APP IS DAMAGED AND CAN'T BE OPENED" :question:</summary>
+
+            ![macos file quarantene]()
+            ### ⚠️ If macOS displays a warning that _the app is damaged and cannot be opened_ then move the unpacked bundle to `/Applications`, and run from the terminal.app:
+
+            ```bash
+            /usr/bin/xattr -d com.apple.quarantine /Applications/PyGlossarySlint.app
+            ```
+            Now you should be able to open the app by **right-clicking** on **/Applications/PyGlossarySlint.app** in Finder, selecting **Open** and confirming running an app unsigned by Apple (only needs to be done once).
+            </details>
+            </blockquote>
+
+          artifacts: "artifacts/*.dmg"
+          artifactContentType: application/zip
+          generateReleaseNotes: true
+          makeLatest: true
+          allowUpdates: true
+          omitBodyDuringUpdate: true # preserve the existing body during updates:
+          tag: ${{ env.VERSION }}

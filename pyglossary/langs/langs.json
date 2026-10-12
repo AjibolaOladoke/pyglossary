@@ -1,0 +1,1816 @@
+[
+	{
+		"codes": ["aa", "aar"],
+		"name": "Afar",
+		"alt_names": ["Qafaraf", "’Afar Af", "Afaraf", "Qafar af"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ab", "abk"],
+		"name": "Abkhaz",
+		"alt_names": ["Abkhazian", "Abxaz", "Аҧсуа", "Аҧсуа бызшәа"],
+		"script": ["Cyrillic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ae", "ave"],
+		"name": "Avestan",
+		"alt_names": ["Zend", "اوستایی"],
+		"rtl": 1,
+		"script": ["Avestan"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["af", "afr"],
+		"name": "Afrikaans",
+		"alt_names": [],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ain"],
+		"name": "Ainu",
+		"alt_names": ["Ainuic", "Aynu", "itak", "アィヌ・イタㇰ"],
+		"script": ["CJK", "Latin"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["aib"],
+		"name": "Äynu",
+		"alt_names": ["Aynu", "Ainu", "Aini", "Eynu", "Abdal", "Äynú", "ئەينۇ‎", "ئابدال"],
+		"script": ["Arabic"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["ak", "aka"],
+		"name": "Akan",
+		"alt_names": [],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["alg"],
+		"name": "Algonquian",
+		"alt_names": ["Algonkian"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["am", "amh"],
+		"name": "Amharic",
+		"alt_names": ["አማርኛ", "Amarəñña"],
+		"script": ["Ge'ez"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["arg", "an"],
+		"name": "Aragonese",
+		"alt_names": ["Aragonés"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ar", "ara"],
+		"name": "Arabic",
+		"alt_names": ["اَلْعَرَبِيَّةُ", "العربیه", "عَرَبِيّ", "عربی"],
+		"rtl": 1,
+		"script": ["Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["arc", "syc"],
+		"name": "Aramaic",
+		"alt_names": ["Classical Syriac", "ܐܪܡܝܐ"],
+		"rtl": 1,
+		"script": ["Syriac"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["arn"],
+		"name": "Mapuche",
+		"alt_names": ["Mapudungun"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["as", "asm"],
+		"name": "Assamese",
+		"alt_names": ["Asamiya", "অসমীয়া"],
+		"script": ["Bengali-Assamese"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["av", "ava", "aya"],
+		"name": "Avar",
+		"alt_names": ["Avaric", "Авар", "Awar"],
+		"script": ["Cyrillic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ay", "aym"],
+		"name": "Aymara",
+		"alt_names": ["Aymar aru", "Aymaran"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["az", "aze"],
+		"name": "Azerbaijani",
+		"alt_names": ["Azeri"],
+		"script": ["Latin", "Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ba", "bak"],
+		"name": "Bashkir",
+		"alt_names": ["Башҡортса‎", "Башҡорт теле", "Башорца", "Башкирский"],
+		"script": ["Cyrillic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["bci"],
+		"name": "Baoulé",
+		"alt_names": ["Baule", "Bawule", "wawle"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["be", "bel"],
+		"name": "Belarusian",
+		"alt_names": ["Беларуская", "Белорусский"],
+		"script": ["Cyrillic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["bg", "bul"],
+		"name": "Bulgarian",
+		"alt_names": ["български", "български език", "Bǎlgarski"],
+		"script": ["Cyrillic", "Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["bh", "bih"],
+		"name": "Bihari",
+		"alt_names": ["Bihari languages", "बिहारी"],
+		"script": ["Devanagari"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["bi", "bis"],
+		"name": "Bislama",
+		"alt_names": ["Bichelamar"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["bm", "bam"],
+		"name": "Bambara",
+		"alt_names": ["Bamanankan", "ߓߡߊߣߊ߲", "ߓߡߊߣߊ߲ߞߊ߲"],
+		"script": ["Latin", "N'Ko"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["bn", "ben"],
+		"name": "Bengali",
+		"alt_names": ["বাংলা"],
+		"script": ["Bengali-Assamese"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["bnt"],
+		"name": "Bantu",
+		"alt_names": ["*bantʊ̀", "bantʊ̀"],
+		"script": ["Latin", "Arabic", "Mandombe"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["bo", "tib", "bod"],
+		"name": "Tibetan",
+		"alt_names": ["Standard Tibetan"],
+		"script": ["Tibetan"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["br", "bre"],
+		"name": "Breton",
+		"alt_names": ["Brezhoneg"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["bs", "bos"],
+		"name": "Bosnian",
+		"alt_names": ["Bosanski", "Босански"],
+		"script": ["Cyrillic", "Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ca", "cat"],
+		"name": "Catalan",
+		"alt_names": ["Català", "Catalán"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ce", "che"],
+		"name": "Chechen",
+		"alt_names": ["нохчийн", "нохчийн мотт"],
+		"script": ["Cyrillic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ch", "cha"],
+		"name": "Chamorro",
+		"alt_names": ["Chamoru", "CHamoru"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["chn"],
+		"name": "Chinook Jargon",
+		"alt_names": ["Chinuk Wawa", "Chinook Wawa", "wawa", "chinook lelang", "lelang", "chinook"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["co", "cos"],
+		"name": "Corsican",
+		"alt_names": ["Corsa"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["cr", "cre"],
+		"name": "Cree",
+		"alt_names": [],
+		"script": ["Canadian syllabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["cs", "cze", "ces"],
+		"name": "Czech",
+		"alt_names": [],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["cu", "chu"],
+		"name": "Church Slavonic",
+		"alt_names": ["Church Slavic", "New Church Slavonic", "New Church Slavic", "црькъвьнословѣньскъ ѩзыкъ"],
+		"script": ["Glagolitic", "Cyrillic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["cv", "chv"],
+		"name": "Chuvash",
+		"alt_names": ["Căvašla", "Çovaşla", "Чӑвашла"],
+		"script": ["Cyrillic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["cy", "wel", "cym"],
+		"name": "Welsh",
+		"alt_names": ["Cymraeg", "y Gymraeg"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["da", "dan"],
+		"name": "Danish",
+		"alt_names": ["dansk"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["de", "ger", "deu"],
+		"name": "German",
+		"alt_names": ["Deutsch", "Duits"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["dng"],
+		"name": "Dungan",
+		"alt_names": ["Хуэйзў йүян"],
+		"script": ["Cyrillic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["dv", "div"],
+		"name": "Maldivian",
+		"alt_names": ["Dhivehi", "Divehi", "ދިވެހި"],
+		"rtl": 1,
+		"script": ["Thaana"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["dyu"],
+		"name": "Dyula",
+		"alt_names": ["Jula", "Dioula", "ߖߎ߬ߟߊ߬ߞߊ߲)"],
+		"script": ["N'Ko", "Latin", "Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["dz", "dzo"],
+		"name": "Dzongkha",
+		"alt_names": ["རྫོང་ཁ་"],
+		"script": ["Tibetan"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["ee", "ewe"],
+		"name": "Ewe",
+		"alt_names": ["Èʋe", "Èʋegbe"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["el", "gre", "ell", "gr"],
+		"name": "Greek",
+		"alt_names": ["ελληνικά", "Elliniká"],
+		"script": ["Greek"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["grc"],
+		"name": "Ancient Greek",
+		"alt_names": ["Ἑλληνική", "Hellēnikḗ"],
+		"script": ["Greek"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["en", "eng"],
+		"name": "English",
+		"alt_names": ["Englisch"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["enm"],
+		"name": "Middle English",
+		"alt_names": [],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["eo", "epo"],
+		"name": "Esperanto",
+		"alt_names": [],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["es", "spa", "esp"],
+		"name": "Spanish",
+		"alt_names": ["español", "española", "spanisch", "Castellà", "Castella", "Castilian", "castellano", "Spanskt"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["et", "est"],
+		"name": "Estonian",
+		"alt_names": ["eesti keel", "eesti"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["eu", "baq", "eus"],
+		"name": "Basque",
+		"alt_names": ["Euskara", "Euskera"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["fa", "per", "fas", "prp"],
+		"name": "Persian",
+		"alt_names": ["Farsi", "فارسی", "Parsi", "Fārsī", "форсӣ", "Forsī", "Porsī", "Persisch", "Pârsi"],
+		"rtl": 1,
+		"script": ["Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ff", "ful", "fuc", "fuf"],
+		"name": "Fula",
+		"alt_names": ["Fulani", "Fulah", "Fulfulde", "𞤊𞤵𞤤𞤬𞤵𞤤𞤣𞤫", "Pulaar", "𞤆𞤵𞤤𞤢𞥄𞤪", "Pular", "𞤆𞤵𞤤𞤢𞤪", "Peul"],
+		"script": ["Latin", "Arabic", "Adlam"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["fi", "fin"],
+		"name": "Finnish",
+		"alt_names": ["suomi", "suomen kieli"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["fil"],
+		"name": "Filipino",
+		"alt_names": ["Pilipino", "Wikang Filipino"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["fj", "fij"],
+		"name": "Fijian",
+		"alt_names": ["Na Vosa Vakaviti", "Na vosa vaka-Viti"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["fo", "fao"],
+		"name": "Faroese",
+		"alt_names": ["føroyskt mál"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["fr", "fre", "fra"],
+		"name": "French",
+		"alt_names": ["français", "langue française"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["fy", "fry"],
+		"name": "West Frisian",
+		"alt_names": ["Western Frisian", "Frisian"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ga", "gle"],
+		"name": "Irish",
+		"alt_names": ["Gaeilge"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["gd", "gla"],
+		"name": "Scottish Gaelic",
+		"alt_names": ["Gaelic", "Gàidhlig", "Scots Gaelic"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["gju"],
+		"name": "Gurjari",
+		"alt_names": ["Gujri", "गुर्जरी", "گُوجَری"],
+		"rtl": 1,
+		"script": ["Takri", "Arabic", "Devanagari"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["gl", "glg"],
+		"name": "Galician",
+		"alt_names": ["galego"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["gn", "grn"],
+		"name": "Guarani",
+		"alt_names": ["Paraguayan Guarani", "avañeʼẽ"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["gu", "guj"],
+		"name": "Gujarati",
+		"alt_names": ["ગુજરાતી", "Gujarātī"],
+		"script": ["Gujarati"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["gv", "glv"],
+		"name": "Manx",
+		"alt_names": ["Manx Gaelic", "Gaelg", "Gailck"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["gwc"],
+		"name": "Kalami",
+		"alt_names": ["Gawri", "Garwi", "Bashkarik", "کالامي", "ګاوری"],
+		"rtl": 1,
+		"script": ["Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ha", "hau"],
+		"name": "Hausa",
+		"alt_names": ["Harshen Hausa", "Halshen Hausa", "هَرْشَن هَوْسَ‎"],
+		"rtl": 2,
+		"script": ["Latin", "Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": [],
+		"name": "Haitian French",
+		"alt_names": ["français haïtien"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["haw"],
+		"name": "Hawaiian",
+		"alt_names": ["ʻŌlelo Hawaiʻi"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["he", "heb"],
+		"name": "Hebrew",
+		"alt_names": ["Ivrit", "עִבְרִית"],
+		"rtl": 1,
+		"script": ["Hebrew"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["hi", "hin"],
+		"name": "Hindi",
+		"alt_names": ["Hindī", "हिंदी"],
+		"script": ["Devanagari", "Latin"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": [],
+		"name": "Hindko",
+		"alt_names": ["ہندکو"],
+		"rtl": 1,
+		"script": ["Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["hnd"],
+		"name": "Southern Hindko",
+		"alt_names": [],
+		"rtl": 1,
+		"script": ["Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["hno"],
+		"name": "Northern Hindko",
+		"alt_names": [],
+		"rtl": 1,
+		"script": ["Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ho", "hmo"],
+		"name": "Hiri Motu",
+		"alt_names": ["Police Motu", "Pidgin Motu", "Hiri"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["hr", "hrv", "scr"],
+		"name": "Croatian",
+		"alt_names": ["hrvatski", "Kroatisch"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ht", "hat"],
+		"name": "Haitian Creole",
+		"alt_names": ["Haitian", "kreyòl ayisyen", "kreyòl", "créole haïtien"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["hu", "hun"],
+		"name": "Hungarian",
+		"alt_names": ["magyar nyelv"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["hy", "arm", "hye"],
+		"name": "Armenian",
+		"alt_names": ["հայերէն", "հայերեն", "hayeren"],
+		"script": ["Armenian"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["hz", "her"],
+		"name": "Herero",
+		"alt_names": ["Otjiherero"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ia", "ina"],
+		"name": "Interlingua",
+		"alt_names": [],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["id", "ind"],
+		"name": "Indonesian",
+		"alt_names": ["bahasa Indonesia", "Indonesia"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ie", "ile"],
+		"name": "Interlingue",
+		"alt_names": ["Occidental", "Interlingue"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ig", "ibo"],
+		"name": "Igbo",
+		"alt_names": ["Ásụ̀sụ̀ Ìgbò"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ii", "iii"],
+		"name": "Nuosu",
+		"alt_names": ["Nosu", "Northern Yi", "Liangshan Yi", "Sichuan Yi", "ꆈꌠꉙ", "Nuosuhxop", "彝語", "诺苏语"],
+		"script": ["CJK"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["ik", "ipk"],
+		"name": "Inupiaq",
+		"alt_names": ["Inupiat", "Inupiatun", "Alaskan Inuit", "Iñupiatun", "Inupiaqtun"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["io", "ido"],
+		"name": "Ido",
+		"alt_names": [],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["is", "ice", "isl"],
+		"name": "Icelandic",
+		"alt_names": ["íslenska"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["it", "ita"],
+		"name": "Italian",
+		"alt_names": ["italiano", "lingua italiana"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["iu", "iku", "ike"],
+		"name": "Inuktitut",
+		"alt_names": ["Eastern Canadian Inuktitut", "ᐃᓄᒃᑎᑐᑦ"],
+		"script": ["Canadian syllabic", "Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ja", "jpn"],
+		"name": "Japanese",
+		"alt_names": ["日本語", "にほんご", "Nihongo"],
+		"script": ["CJK"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["jb", "jbo"],
+		"name": "Lojban",
+		"alt_names": [],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["jv", "jav"],
+		"name": "Javanese",
+		"alt_names": ["ꦧꦱꦗꦮ", "ꦕꦫꦗꦮ", "باسا جاوا", "Basa Jawa", "Båså Jåwå", "Cara Jawa"],
+		"script": ["Latin", "Javanese", "Arabic"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["ka", "geo", "kat"],
+		"name": "Georgian",
+		"alt_names": ["Kartuli", "ქართული"],
+		"script": ["Georgian"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["kea"],
+		"name": "Cape Verdean Creole",
+		"alt_names": ["Cape Verdean"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["kg", "kon"],
+		"name": "Kongo",
+		"alt_names": ["Kikongo"],
+		"script": ["Latin", "Mandombe"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["kha"],
+		"name": "Khasi",
+		"alt_names": ["Ka Ktien Khasi", "ক ক্ত্যেন খসি"],
+		"script": ["Latin", "Bengali-Assamese"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["ki", "kik"],
+		"name": "Kikuyu",
+		"alt_names": ["Gĩkũyũ"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["kj", "kua"],
+		"name": "Kwanyama",
+		"alt_names": ["Kuanyama", "Cuanhama"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["kk", "kaz"],
+		"name": "Kazakh",
+		"alt_names": ["qazaqşa", "qazaq tili", "қазақша", "қазақ тілі", "قازاقشا", "قازاق تىلى"],
+		"script": ["Cyrillic", "Latin", "Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["kl", "kal"],
+		"name": "Greenlandic",
+		"alt_names": ["kalaallisut", "grønlandsk"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["km", "khm"],
+		"name": "Khmer",
+		"alt_names": ["Cambodian", "ភាសាខ្មែរ", "phiăsaa khmae", "ខ្មែរ", "khmae"],
+		"script": ["Khmer"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["kn", "kan"],
+		"name": "Kannada",
+		"alt_names": ["Kanarese", "ಕನ್ನಡ"],
+		"script": ["Kannada"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ko", "kor"],
+		"name": "Korean",
+		"alt_names": ["한국어", "韓國語", "조선말", "朝鮮말"],
+		"script": ["CJK"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["kr", "kau"],
+		"name": "Kanuri",
+		"alt_names": ["Kànùrí"],
+		"script": ["Arabic", "Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ks", "kas"],
+		"name": "Kashmiri",
+		"alt_names": ["Koshur", "कॉशुर", "كٲشُر"],
+		"script": ["Arabic", "Devanagari"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["ku", "kur"],
+		"name": "Kurdish",
+		"alt_names": ["Kurdî", "کوردی"],
+		"script": ["Arabic", "Latin", "Armenian"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["kv", "kom"],
+		"name": "Komi",
+		"alt_names": ["Komi-Zyryan", "Коми", "Коми кыв"],
+		"script": ["Cyrillic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["kw", "cor"],
+		"name": "Cornish",
+		"alt_names": ["Kernewek", "Kernowek"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ky", "kir"],
+		"name": "Kyrgyz",
+		"alt_names": ["Kirghiz", "Kirgiz", "Qirghiz", "Кыргызча", "Qırğızça"],
+		"script": ["Cyrillic", "Arabic", "Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["la", "lat"],
+		"name": "Latin",
+		"alt_names": ["latine", "latīne", "Lateinisch"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["lb", "ltz"],
+		"name": "Luxembourgish",
+		"alt_names": ["Luxemburgish", "Letzeburgesch", "Lëtzebuergesch", "Luxembourgian"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["lg", "lug"],
+		"name": "Luganda",
+		"alt_names": ["Ganda", "Oluganda"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["li", "lim"],
+		"name": "Limburgish",
+		"alt_names": ["Limburgan", "Limburgian", "Limburgic", "Lèmburgs", "Limburgs", "Limburgisch", "Limbourgeois"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ln", "lin"],
+		"name": "Lingala",
+		"alt_names": ["lingála"],
+		"script": ["Latin", "Mandombe"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["lo", "lao"],
+		"name": "Lao",
+		"alt_names": ["Laotian", "ລາວ", "ພາສາລາວ"],
+		"script": ["Lao", "Thai"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["lt", "lit"],
+		"name": "Lithuanian",
+		"alt_names": ["lietuvių kalba"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["lu", "lub"],
+		"name": "Luba-Katanga",
+		"alt_names": ["Luba-Shaba", "Kiluba"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["lv", "lav"],
+		"name": "Latvian",
+		"alt_names": ["Lettish", "latviešu valoda"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["mas", "cma"],
+		"name": "Maasai",
+		"alt_names": ["Masai", "Maa", "ɔl"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["mg", "mlg"],
+		"name": "Malagasy",
+		"alt_names": [],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["mh", "mah"],
+		"name": "Marshallese",
+		"alt_names": ["Ebon", "Kajin M̧ajeļ", "Kajin Majōl"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["mi", "mao", "mri"],
+		"name": "Maori",
+		"alt_names": ["Māori", "Te reo Māori"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["mk", "mac", "mkd"],
+		"name": "Macedonian",
+		"alt_names": ["македонски", "македонски јазик"],
+		"script": ["Cyrillic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ml", "mal"],
+		"name": "Malayalam",
+		"alt_names": ["മലയാളം", "Malayāḷam"],
+		"script": ["Malayalam"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["mnc"],
+		"name": "Manchu",
+		"alt_names": ["manju gisun", "ᠮᠠᠨᠵᡠᡤᡳᠰᡠᠨ"],
+		"script": ["Mongolian"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["mn", "mon"],
+		"name": "Mongolian",
+		"alt_names": ["монгол хэл", "ᠮᠣᠩᠭᠣᠯ ᠬᠡᠯᠡ"],
+		"script": ["Mongolian", "Cyrillic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["mo", "mol"],
+		"name": "Moldovan",
+		"alt_names": ["Moldavian", "limba moldovenească", "лимба молдовеняскэ", "лимба Молдовенѣскъ"],
+		"script": ["Latin", "Cyrillic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["mr", "mar"],
+		"name": "Marathi",
+		"alt_names": ["मराठी", "Marāṭhī"],
+		"script": ["Devanagari"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ms", "may"],
+		"name": "Malay",
+		"alt_names": ["bahasa Melayu", "بهاس ملايو", "ꤷꥁꤼ ꤸꥍꤾꤿꥈ"],
+		"script": ["Latin", "Arabic", "Thai"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["mt", "mlt"],
+		"name": "Maltese",
+		"alt_names": ["Malti"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["my", "bur", "mya"],
+		"name": "Burmese",
+		"alt_names": ["မြန်မာစာ", "မြန်မာစကား"],
+		"script": ["Burmese"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["na", "nau"],
+		"name": "Nauruan",
+		"alt_names": ["Nauru", "dorerin Naoero", "Ekaiairũ Naoero"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["nb", "nob"],
+		"name": "Bokmal",
+		"alt_names": ["Bokmål", "Norwegian Bokmal", "Norwegian Bokmål"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["nd", "nde"],
+		"name": "North Ndebele",
+		"alt_names": ["Ndebele", "amaNdebele", "Zimbabwean Ndebele", "North Ndebele"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ne", "nep"],
+		"name": "Nepali",
+		"alt_names": ["Gorkhali", "Khaskura", "Nepalese", "Parbate", "नेपाली", "खस कुरा"],
+		"script": ["Devanagari"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["ng", "ndo"],
+		"name": "Ndonga",
+		"alt_names": ["Oshindonga"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["nl", "dut", "nld"],
+		"name": "Dutch",
+		"alt_names": ["Flemish", "Nederlands", "Niederländisch", "Holländisch", "Néerlandais"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["nn", "nno"],
+		"name": "Norwegian Nynorsk",
+		"alt_names": ["nynorsk"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["no", "nor"],
+		"name": "Norwegian",
+		"alt_names": ["norsk"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["nr", "nbl"],
+		"name": "Southern Ndebele",
+		"alt_names": ["South Ndebele", "Transvaal Ndebele", "isiNdebele seSewula"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["nv", "nav"],
+		"name": "Navajo",
+		"alt_names": ["Navaho", "Diné bizaad", "Naabeehó bizaad"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ny", "nya"],
+		"name": "Chewa",
+		"alt_names": ["Nyanja", "Chichewa", "Chinyanja"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["oc", "oci"],
+		"name": "Occitan",
+		"alt_names": ["lenga d'òc", "provençal"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["oj", "oji"],
+		"name": "Ojibwe",
+		"alt_names": ["Ojibwa", "Ojibway", "Otchipwe", "Anishinaabemowin"],
+		"script": ["Latin", "Canadian syllabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["om", "orm"],
+		"name": "Oromo",
+		"alt_names": ["Afaan Oromoo"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ori", "ory", "or"],
+		"name": "Odia",
+		"alt_names": ["Oriya", "ଓଡ଼ିଆ", "Oṛiā"],
+		"script": ["Odia"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["os", "oss"],
+		"name": "Ossetian",
+		"alt_names": ["Ossetic", "Ossete", "ирон ӕвзаг", "дигорон ӕвзаг"],
+		"script": ["Cyrillic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["pa", "pan"],
+		"name": "Punjabi",
+		"alt_names": ["Panjabi", "ਪੰਜਾਬੀ", "پن٘جابی"],
+		"script": ["Gurmukhi", "Arabic"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["pi", "pli"],
+		"name": "Pali",
+		"alt_names": ["Magadhan"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["pl", "pol"],
+		"name": "Polish",
+		"alt_names": ["język polski", "polszczyzna", "polski"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ps", "pus"],
+		"name": "Pashto",
+		"alt_names": ["پښتو", "Pax̌tō"],
+		"script": ["Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["pt", "por"],
+		"name": "Portuguese",
+		"alt_names": ["português", "língua portuguesa", "Portugees"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["qu", "que"],
+		"name": "Quechua",
+		"alt_names": ["Runasimi", "Kechua", "Runa Simi"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["rm", "roh"],
+		"name": "Rhaeto-Romance",
+		"alt_names": ["Rheto-Romance", "Rhaetian", "Raeto-Romance"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["rn", "run"],
+		"name": "Kirundi",
+		"alt_names": ["Rundi", "Ikirundi"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ro", "rum", "ron"],
+		"name": "Romanian",
+		"alt_names": ["Rumanian", "Roumanian", "Daco-Romanian", "limba română"],
+		"script": ["Latin", "Cyrillic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ru", "rus"],
+		"name": "Russian",
+		"alt_names": ["русский", "русский язык", "Russisch"],
+		"script": ["Cyrillic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["rw", "kin"],
+		"name": "Kinyarwanda",
+		"alt_names": ["Ikinyarwanda"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["sa", "san"],
+		"name": "Sanskrit",
+		"alt_names": ["संस्कृतम्", "saṃskṛtam"],
+		"script": ["Devanagari"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["sc", "srd"],
+		"name": "Sardinian",
+		"alt_names": ["Sard", "sardu", "sadru", "limba sarda", "lìngua sarda"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["sd", "snd"],
+		"name": "Sindhi",
+		"alt_names": ["سنڌي", "सिंधी", "ਸਿੰਧੀ", "𑈩𑈭𑈴𑈝𑈮", "𑋝𑋡𑋟𑋐𑋢"],
+		"script": ["Arabic", "Devanagari", "Gurmukhi", "Khojki", "Khudabadi"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["se", "sme"],
+		"name": "Northern Sami",
+		"alt_names": ["North Sami", "Sami", "davvisámegiella"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["sg", "sag"],
+		"name": "Sango",
+		"alt_names": ["Sangho", "yângâ tî sängö"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["sh", "shr", "hbs"],
+		"name": "Serbo-Croatian",
+		"alt_names": ["Serbo-Croat", "Serbo-Croat-Bosnian", "Bosnian-Croatian-Serbian", "Bosnian-Croatian-Montenegrin-Serbian", "srpskohrvatski", "hrvatskosrpski", "српскохрватски", "хрватскосрпски", "naš jezik", "наш језик"],
+		"script": ["Latin", "Cyrillic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["si", "sin"],
+		"name": "Sinhala",
+		"alt_names": ["Sinhalese", "සිංහල", "Siṁhala"],
+		"script": ["Sinhala"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["sk", "slo", "slk"],
+		"name": "Slovak",
+		"alt_names": ["slovenčina", "slovenský jazyk"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["sl", "slv"],
+		"name": "Slovene",
+		"alt_names": ["Slovenian", "slovenski jezik", "slovenščina"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["sm", "smo"],
+		"name": "Samoan",
+		"alt_names": ["Gagana faʻa Sāmoa", "Gagana Sāmoa"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["sn", "sna"],
+		"name": "Shona",
+		"alt_names": ["chiShona"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["so", "som"],
+		"name": "Somali",
+		"alt_names": ["Af Soomaali"],
+		"script": ["Latin", "Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["sq", "alb", "sqi"],
+		"name": "Albanian",
+		"alt_names": ["shqip", "gjuha shqipe"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["sr", "srp"],
+		"name": "Serbian",
+		"alt_names": ["српски", "srpski"],
+		"script": ["Cyrillic", "Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ss", "ssw"],
+		"name": "Swazi",
+		"alt_names": ["Swati", "siSwati"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["st", "sot"],
+		"name": "Sotho",
+		"alt_names": ["Sesotho", "Southern Sotho"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["su", "sun"],
+		"name": "Sundanese",
+		"alt_names": ["Basa Sunda", "ᮘᮞ ᮞᮥᮔ᮪ᮓ"],
+		"script": ["Latin", "Sundanese", "Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["sv", "swe"],
+		"name": "Swedish",
+		"alt_names": ["svenska", "Svensk"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["sw", "swa"],
+		"name": "Swahili",
+		"alt_names": ["Kiswahili"],
+		"script": ["Latin", "Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ta", "tam"],
+		"name": "Tamil",
+		"alt_names": ["தமிழ்", "Tamiḻ"],
+		"script": ["Tamil", "Arabic", "Latin"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["te", "tel"],
+		"name": "Telugu",
+		"alt_names": ["తెలుగు"],
+		"script": ["Telugu"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["tg", "tgk"],
+		"name": "Tajik",
+		"alt_names": ["Tajiki", "тоҷик", "Тоҷикӣ", "tojikī", "забо́ни тоҷикӣ́", "zaboni tojikī"],
+		"script": ["Cyrillic", "Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["th", "tha"],
+		"name": "Thai",
+		"alt_names": ["Central Thai", "Siamese", "ภาษาไทย", "Phasa Thai"],
+		"script": ["Thai"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["ti", "tir"],
+		"name": "Tigrinya",
+		"alt_names": ["Tigrigna", "ትግርኛ", "tigriññā"],
+		"script": ["Ge'ez"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["tk", "tuk"],
+		"name": "Turkmen",
+		"alt_names": ["Türkmençe", "Türkmen", "Türkmen dili", "Түркменче Түркмен дили", "تۆرکمن ديلی", "تۆرکمنچه‎", "تۆرکمن"],
+		"script": ["Latin", "Cyrillic", "Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["tl", "tgl"],
+		"name": "Tagalog",
+		"alt_names": ["Wikang Tagalog"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["tn", "tsn"],
+		"name": "Tswana",
+		"alt_names": ["Setswana"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["to", "ton"],
+		"name": "Tongan",
+		"alt_names": ["Tonga", "lea fakatonga", "lea faka-Tonga"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["tr", "tur"],
+		"name": "Turkish",
+		"alt_names": ["Türkçe", "Türk dili", "Istanbul Turkish", "Turkey Turkish", "Turks"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ota"],
+		"name": "Ottoman Turkish",
+		"alt_names": ["لسان عثمانى‎", "lisân-ı Osmânî", "Osmanlı Türkçesi"],
+		"rtl": 1,
+		"script": ["Arabic", "Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["trw"],
+		"name": "Torwali",
+		"alt_names": ["توروالی"],
+		"script": ["Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ts", "tso"],
+		"name": "Tsonga",
+		"alt_names": ["Xitsonga", "Xitsonga"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["tt", "tat"],
+		"name": "Tatar",
+		"alt_names": ["татар", "تاتار", "татар теле", "tatar tele", "تاتار تلی‎"],
+		"script": ["Cyrillic", "Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["tw", "twi"],
+		"name": "Twi",
+		"alt_names": ["Akan Kasa"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ty", "tah"],
+		"name": "Tahitian",
+		"alt_names": ["Reo Tahiti", "Reo Māꞌohi"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ug", "uig"],
+		"name": "Uyghur",
+		"alt_names": ["Uighur", "Uyƣur", "Uyğur", "ئۇيغۇر", "Уйғур", "ئۇيغۇر تىلى", "Уйғур тили", "Uyghur tili", "Uyƣur tili", "Uyğur tili"],
+		"script": ["Arabic", "Cyrillic", "Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["uk", "ukr"],
+		"name": "Ukrainian",
+		"alt_names": ["українська", "українська мова", "ukrayins'ka mova"],
+		"script": ["Cyrillic", "Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ur", "urd"],
+		"name": "Urdu",
+		"alt_names": ["Urdū", "اُردُو", "اردو", "Lashkari", "لشکری", "Laškarī", "Modern Standard Urdu"],
+		"rtl": 1,
+		"script": ["Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["uz", "uzb"],
+		"name": "Uzbek",
+		"alt_names": ["O‘zbekcha", "o‘zbek tili", "Ўзбекча", "ўзбек тили", "اۉزبېکچه", "اۉزبېک تیلی", "Özbekçä", "Özbek Tili"],
+		"script": ["Latin", "Cyrillic", "Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ve", "ven"],
+		"name": "Venda",
+		"alt_names": ["Tshivenda", "Tshivenḓa", "Luvenḓa"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["vi", "vie"],
+		"name": "Vietnamese",
+		"alt_names": ["Tiếng Việt", "Việt"],
+		"script": ["Latin", "CJK"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["vo", "vol"],
+		"name": "Volapuk",
+		"alt_names": ["Volapük", "Volapük nulik"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["wa", "wln"],
+		"name": "Walloon",
+		"alt_names": ["walon"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["wo", "wol"],
+		"name": "Wolof",
+		"alt_names": [],
+		"script": ["Latin", "Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["xh", "xho"],
+		"name": "Xhosa",
+		"alt_names": ["isiXhosa"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["yi", "yid"],
+		"name": "Yiddish",
+		"alt_names": ["ייִדיש", "יידיש", "אידיש", "yidish", "idish"],
+		"script": ["Hebrew"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["yo", "yor"],
+		"name": "Yoruba",
+		"alt_names": ["Èdè Yorùbá"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["za", "zha"],
+		"name": "Zhuang",
+		"alt_names": ["Vahcuengh", "話僮", "壮语", "壯語", "Zhuàngyǔ"],
+		"script": ["CJK"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["zh", "chi", "zho", "cmn"],
+		"name": "Chinese",
+		"alt_names": ["汉语", "漢語", "Mandarin", "Standard Chinese", "Modern Standard Mandarin", "Standard Mandarin", "Mandarin Chinese", "普通话", "普通話", "国语", "國語", "华语", "華語"],
+		"script": ["CJK"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["zu", "zul"],
+		"name": "Zulu",
+		"alt_names": ["isiZulu"],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ast"],
+		"name": "Asturian",
+		"alt_names": [],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ceb"],
+		"name": "Cebuano",
+		"alt_names": [],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["got"],
+		"name": "Gothic",
+		"alt_names": [],
+		"script": ["Gothic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ang"],
+		"name": "Old English",
+		"alt_names": [],
+		"script": ["Latin", "Runic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["non"],
+		"name": "Old Norse",
+		"alt_names": [],
+		"script": ["Latin", "Runic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["nrf"],
+		"name": "Norman",
+		"alt_names": [],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["yue"],
+		"name": "Cantonese",
+		"alt_names": [],
+		"script": ["CJK"],
+		"wiki": "",
+		"title_tag": "big"
+	},
+	{
+		"codes": ["fro"],
+		"name": "Old French",
+		"alt_names": [],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["lld"],
+		"name": "Ladin",
+		"alt_names": [],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["lkt"],
+		"name": "Lakota",
+		"alt_names": [],
+		"script": ["Latin"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["ady"],
+		"name": "Adyghe",
+		"alt_names": [],
+		"script": ["Cyrillic", "Latin", "Arabic"],
+		"wiki": "",
+		"title_tag": "b"
+	},
+	{
+		"codes": ["xcl"],
+		"name": "Classical Armenian",
+		"alt_names": ["Old Armenian"],
+		"script": ["Armenian"],
+		"wiki": "",
+		"title_tag": "b"
+	}
+]

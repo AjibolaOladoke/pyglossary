@@ -1,0 +1,151 @@
+#
+# Copyright © 2025 Saeed Rasooli <saeed.gnu@gmail.com> (ilius)
+#
+# based on 
+# under Apache License, Version 2.0, January 2004
+# 
+
+"""
+Typing stubs for ``lxml`` HTML/XML construction in plugins.
+
+Extends upstream ``types-lxml`` ideas with ``Element`` and ``T_htmlfile``
+protocols so plugin code using ``lxml.etree`` can be type-checked without
+importing heavy runtime dependencies everywhere.
+
+This module is used in plugins.
+"""
+
+from __future__ import annotations
+
+import typing
+from collections.abc import Mapping
+from contextlib import AbstractContextManager as ContextManager
+from typing import AnyStr, Literal
+
+from lxml.etree import QName, _Element  # noqa: PLC2701
+
+__all__ = ["Element", "T_htmlfile"]
+
+type _TextArg = str | bytes | QName
+type _TagName = _TextArg
+
+
+_OutputMethodArg = Literal[
+	"html",
+	"text",
+	"xml",
+	"HTML",
+	"TEXT",
+	"XML",
+]
+
+# class SupportsLaxItems[KT, VT](Protocol):
+#     def items(self) -> Collection[tuple[KT, VT]]: ...
+
+# type _AttrNameKey = str | bytes | QName
+# type _AttrVal = _TextArg | QName  # TODO Consider dropping QName
+# type _AttrMapping = SupportsLaxItems[_AttrNameKey, _AttrVal]  # noqa: F821
+
+# class Element(Protocol):
+# 	attrib: _AttrMapping | None
+
+
+# Element type can not be a protocol or interface or even TypeAlias
+# it's stupid!
+# And now pyright complains at every usage of it:
+# error: Variable not allowed in type expression (reportInvalidTypeForm)
+
+type Element = _Element
+
+
+class IncrementalFileWriter(typing.Protocol):
+	# def write_declaration(
+	# 	self,
+	# 	version: AnyStr | None = ...,
+	# 	standalone: bool | None = ...,
+	# 	doctype: AnyStr | None = ...,
+	# ) -> None: ...
+
+	# def write_doctype(
+	# 	self,
+	# 	doctype: AnyStr | None,
+	# ) -> None: ...
+
+	"""Incremental File Writer."""
+
+	def write(
+		self,
+		*args: AnyStr | Element,
+		with_tail: bool = ...,
+		pretty_print: bool = ...,
+		method: _OutputMethodArg | None = ...,
+	) -> None: ...
+
+	def flush(self) -> None: ...
+
+	def method(
+		self,
+		method: _OutputMethodArg | None,
+	) -> ContextManager[None]:
+		raise NotImplementedError
+
+	def element(
+		self,
+		tag: _TagName,
+		attrib: Mapping[str, AnyStr] | None = ...,
+		nsmap: dict[str | None, AnyStr] | None = ...,
+		method: _OutputMethodArg | None = ...,
+		**_extra: AnyStr,
+	) -> ContextManager[None]:
+		raise NotImplementedError
+
+
+# class AsyncIncrementalFileWriter(typing.Protocol):
+# 	async def write_declaration(
+# 		self,
+# 		version: AnyStr | None = ...,
+# 		standalone: bool | None = ...,
+# 		doctype: AnyStr | None = ...,
+# 	) -> None: ...
+
+# 	async def write_doctype(
+# 		self,
+# 		doctype: AnyStr | None,
+# 	) -> None: ...
+
+# 	async def write(
+# 		self,
+# 		*args: AnyStr | Element | None,
+# 		with_tail: bool = ...,
+# 		pretty_print: bool = ...,
+# 		method: _OutputMethodArg | None = ...,
+# 	) -> None: ...
+
+# 	async def flush(self) -> None: ...
+
+# 	def method(
+# 		self,
+# 		method: _OutputMethodArg | None,
+# 	) -> AsyncContextManager[None]: ...
+
+# 	def element(
+# 		self,
+# 		tag: _TagName,
+# 		attrib: Mapping[str, AnyStr] | None = ...,
+# 		nsmap: dict[str | None, AnyStr] | None = ...,
+# 		method: _OutputMethodArg | None = ...,
+# 		**_extra: AnyStr,
+# 	) -> AsyncContextManager[None]: ...
+
+
+class T_htmlfile(  # noqa: PGH003
+	IncrementalFileWriter,
+	ContextManager[IncrementalFileWriter],
+	# AsyncIncrementalFileWriter,
+	# AsyncContextManager[AsyncIncrementalFileWriter],
+):
+	"""T htmlfile."""
+
+
+# typing.AsyncContextManager
+# is generic version of contextlib.AbstractAsyncContextManager

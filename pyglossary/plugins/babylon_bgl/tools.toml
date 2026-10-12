@@ -1,0 +1,22 @@
+["Babylon Translator"]
+web = ""
+wiki = ""
+platforms = [ "Windows",]
+license = "Proprietary (Freemium)"
+
+[GoldenDict]
+web = ""
+platforms = [ "Linux", "Windows",]
+license = "GPL"
+
+["GoldenDict Mobile (Free)"]
+web = ""
+web2 = ""
+platforms = [ "Android",]
+license = "Proprietary (Freeware)"
+
+["GoldenDict Mobile (Full)"]
+web = ""
+web2 = ""
+platforms = [ "Android",]
+license = "Proprietary"

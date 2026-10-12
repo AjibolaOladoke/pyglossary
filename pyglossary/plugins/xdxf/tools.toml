@@ -1,0 +1,26 @@
+["GoldenDict-NG by @xiaoyifang"]
+web = ""
+source = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "GPL"
+plang = "C++"
+
+[GoldenDict]
+web = ""
+source = ""
+wiki = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "GPL"
+plang = "C++"
+
+[QTranslate]
+web = ""
+platforms = [ "Windows",]
+license = "Proprietary (Freeware)"
+plang = "C++"
+
+[Alpus]
+web = ""
+platforms = [ "Windows", "Mac", "Linux", "Android",]
+license = "Proprietary (Freeware)"
+plang = "Java"

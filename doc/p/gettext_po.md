@@ -1,0 +1,46 @@
+## Gettext Source (.po)
+
+<!--
+This document is generated from source code. Do NOT edit.
+To update, modify plugins/gettext_po/__init__.py file, then run ./scripts/gen
+-->
+
+### General Information
+
+| Attribute | Value |
+| --------- | ----- |
+| Name | GettextPo |
+| snake_case_name | gettext_po |
+| Description | Gettext Source (.po) |
+| Extensions | `.po` |
+| Read support | Yes |
+| Write support | Yes |
+| Single-file | Yes |
+| Kind | 📝 text |
+| Sort-on-write | No (by default) |
+| Sort key | (`headword_lower`) |
+| Wiki | [Gettext]() |
+| Website | [gettext - GNU Project]() |
+
+### Write options
+
+| Name | Default | Type | Comment |
+| ---- | ------- | ---- | ------- |
+| resources | `True` | bool | Enable resources / data files |
+
+### Dependencies for reading and writing
+
+PyPI Links: [polib]()
+
+To install, run:
+
+```sh
+pip3 install polib
+```
+
+### Dictionary Applications/Tools
+
+| Name & Website | Source code | License | Platforms | Language |
+| -------------- | ----------- | ------- | --------- | -------- |
+| [gettext]() | ― | GPL | Linux, Windows |  |
+| [poEdit]() | ― | MIT / Shareware | Linux, Windows, Mac |  |

@@ -1,0 +1,4 @@
+[dictgen]
+web = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "MIT"

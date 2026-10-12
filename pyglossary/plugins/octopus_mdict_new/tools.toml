@@ -1,0 +1,27 @@
+[MDict]
+web = ""
+platforms = [ "Android", "iOS", "Windows", "Mac",]
+license = "Proprietary"
+
+["GoldenDict-NG by @xiaoyifang"]
+web = ""
+source = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "GPL"
+plang = "C++"
+
+[GoldenDict]
+web = ""
+source = ""
+wiki = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "GPL"
+plang = "C++"
+
+[SilverDict]
+web = ""
+source = ""
+wiki = ""
+platforms = [ "Web",]
+license = "GPL"
+plang = "Python"

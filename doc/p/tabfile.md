@@ -1,0 +1,53 @@
+## Tabfile (.txt, .dic)
+
+<!--
+This document is generated from source code. Do NOT edit.
+To update, modify plugins/tabfile/__init__.py file, then run ./scripts/gen
+-->
+
+### General Information
+
+| Attribute | Value |
+| --------- | ----- |
+| Name | Tabfile |
+| snake_case_name | tabfile |
+| Description | Tabfile (.txt, .dic) |
+| Extensions | `.txt`, `.tab`, `.tsv` |
+| Read support | Yes |
+| Write support | Yes |
+| Single-file | Yes |
+| Kind | 📝 text |
+| Sort-on-write | No (by default) |
+| Sort key | (`headword_lower`) |
+| Wiki | [Tab-separated values]() |
+| Website | ― |
+
+### Read options
+
+| Name | Default | Type | Comment |
+| ---- | ------- | ---- | ------- |
+| encoding | `utf-8` | str | Encoding/charset |
+
+### Write options
+
+| Name | Default | Type | Comment |
+| ---- | ------- | ---- | ------- |
+| encoding | `utf-8` | str | Encoding/charset |
+| enable_info | `True` | bool | Enable glossary info / metedata |
+| resources | `True` | bool | Enable resources / data files |
+| file_size_approx | `0` | int | Split up by given approximate file size<br />examples: 100m, 1g |
+| word_title | `False` | bool | Add headwords title to beginning of definition |
+
+### File format specification
+
+See [doc/tabfile-spec.md](../tabfile-spec.md).
+
+### Dictionary Applications/Tools
+
+| Name & Website | Source code | License | Platforms | Language |
+| -------------- | ----------- | ------- | --------- | -------- |
+| [StarDict-Editor (Tools)]() | [@huzheng001/stardict-3]() | GPL | Linux, Windows, Mac | C |
+
+### Related Formats
+
+- [CSV (.csv)](./csv.md)

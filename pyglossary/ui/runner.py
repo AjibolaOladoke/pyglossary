@@ -1,0 +1,225 @@
+"""
+Lazy loader and factory for PyGlossary UI backends.
+
+``getRunner`` maps ``--ui`` values (gtk3, gtk4, qt6, wx, tk, web, slint, cmd)
+to the corresponding UI class, with platform-specific defaults on Windows and
+macOS.
+"""
+
+from __future__ import annotations
+
+import logging
+import os
+import sys
+from typing import TYPE_CHECKING, Any, cast
+
+from pyglossary.config_type import ConfigType
+from pyglossary.core import sysName
+from pyglossary.glossary_v2 import Error
+
+from .base import UIBase
+
+if TYPE_CHECKING:
+	import argparse
+	from collections.abc import Callable
+
+__all__ = ["getRunner"]
+
+ui_list = ["gtk3", "gtk4", "qt6", "wx", "tk", "tk_wizard", "web", "slint"]
+if os.sep == "\\" or sysName == "darwin":  # windows or mac
+	ui_list = ["qt6", "wx", "tk_wizard", "tk", "gtk3", "gtk4", "web", "slint"]
+
+log: logging.Logger | None = None
+
+
+def load_ui_gtk3() -> Callable:  # type: ignore[type-arg]
+	from pyglossary.ui.ui_gtk3 import UI
+
+	return UI
+
+
+def load_ui_gtk4() -> Callable:  # type: ignore[type-arg]
+	from pyglossary.ui.ui_gtk4 import UI
+
+	return UI
+
+
+def load_ui_tk() -> Callable:  # type: ignore[type-arg]
+	from pyglossary.ui.ui_tk import UI
+
+	return UI
+
+
+def load_ui_tk_wizard() -> Callable:  # type: ignore[type-arg]
+	from pyglossary.ui.ui_tk_wizard import UI
+
+	return UI
+
+
+def load_ui_qt6() -> Callable:  # type: ignore[type-arg]
+	from pyglossary.ui.ui_qt6 import UI
+
+	return UI
+
+
+def load_ui_wx() -> Callable:  # type: ignore[type-arg]
+	from pyglossary.ui.ui_wx import UI
+
+	return UI
+
+
+def load_ui_web() -> Callable:  # type: ignore[type-arg]
+	from pyglossary.ui.ui_web import UI
+
+	return UI
+
+
+def load_ui_slint() -> Callable:  # type: ignore[type-arg]
+	from pyglossary.ui.ui_slint import UI
+
+	return UI
+
+
+ui_loaders: dict[str, Callable] = {  # type: ignore[type-arg]
+	"gtk3": load_ui_gtk3,
+	"gtk4": load_ui_gtk4,
+	"qt": load_ui_qt6,
+	"qt6": load_ui_qt6,
+	"wx": load_ui_wx,
+	"tk": load_ui_tk,
+	"tk_wizard": load_ui_tk_wizard,
+	"web": load_ui_web,
+	"slint": load_ui_slint,
+}
+
+
+def canRunGUI() -> bool:
+	if sysName == "linux":
+		if not os.getenv("DISPLAY"):
+			return False
+		try:
+			import gi  # noqa: F401
+		except ImportError:
+			try:
+				import tkinter  # noqa: F401
+			except ModuleNotFoundError:
+				return False
+
+	elif sysName == "darwin":
+		try:
+			import tkinter  # noqa: F401
+		except ModuleNotFoundError:
+			return False
+
+	return True
+
+
+def shouldUseCMD(args: argparse.Namespace) -> bool:
+	if not canRunGUI():
+		return True
+	if args.interactive:
+		return True
+	return bool(args.inputFilename and args.outputFilename)
+
+
+def base_ui_run(  # noqa: PLR0913
+	inputFilename: str = "",
+	outputFilename: str = "",
+	inputFormat: str = "",
+	outputFormat: str = "",
+	reverse: bool = False,
+	config: ConfigType | None = None,
+	readOptions: dict[str, Any] | None = None,
+	writeOptions: dict[str, Any] | None = None,
+	convertOptions: dict[str, Any] | None = None,
+	glossarySetAttrs: dict[str, Any] | None = None,
+) -> bool:
+	from pyglossary.glossary_v2 import ConvertArgs, Glossary
+
+	assert log
+	if reverse:
+		log.error("--reverse does not work with --ui=none")
+		return False
+	ui = UIBase(progressbar=False)
+	ui.loadConfig(**cast("dict[str, Any]", config if config is not None else {}))
+	glos = Glossary(ui=ui)
+	glos.config = cast("ConfigType", ui.config)
+	glos.progressbar = False
+	if glossarySetAttrs:
+		for attr, value in glossarySetAttrs.items():
+			setattr(glos, attr, value)
+	try:
+		glos.convert(
+			ConvertArgs(
+				inputFilename=inputFilename,
+				outputFilename=outputFilename,
+				inputFormat=inputFormat,
+				outputFormat=outputFormat,
+				readOptions=readOptions,
+				writeOptions=writeOptions,
+				**(convertOptions or {}),
+			),
+		)
+	except Error as e:
+		log.critical(str(e))
+		glos.cleanup()
+		return False
+	return True
+
+
+def getRunner(
+	args: argparse.Namespace,
+	ui_type: str,
+	logArg: logging.Logger,
+) -> Callable | None:  # type: ignore[type-arg]
+	global log
+	log = logArg
+
+	if ui_type == "none":
+		return base_ui_run
+
+	if ui_type == "auto" and shouldUseCMD(args):
+		ui_type = "cmd"
+
+	uiArgs = {
+		"progressbar": args.progressbar is not False,
+	}
+
+	if ui_type == "cmd":
+		if args.interactive:
+			from .ui_cmd_interactive import UI as _UICmdInteractive
+
+			return _UICmdInteractive(**uiArgs).run
+		if args.inputFilename and args.outputFilename:
+			from .ui_cmd import UI as _UICmd
+
+			return _UICmd(**uiArgs).run
+		if not args.no_interactive:
+			from .ui_cmd_interactive import UI as _UICmdInteractive2
+
+			return _UICmdInteractive2(**uiArgs).run
+		log.error("no input file given, try --help")
+		return None
+
+	if ui_type == "gtk":
+		ui_type = "gtk3"
+
+	if ui_type == "auto":
+		if not args.no_interactive and sys.stdin.isatty():
+			ui_list.insert(3, "cmd_interactive")
+		log.debug(f"{ui_list = }")
+
+		for ui_type2 in ui_list:
+			try:
+				uiClass = ui_loaders[ui_type2]()
+			except ImportError as e:  # noqa: PERF203
+				log.error(str(e))
+			else:
+				return uiClass(**uiArgs).run
+		log.error(
+			"no user interface module found! "
+			f'try "{sys.argv[0]} -h" to see command line usage',
+		)
+		return None
+
+	return ui_loaders[ui_type]()(**uiArgs).run

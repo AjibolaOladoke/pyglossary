@@ -1,0 +1,57 @@
+# mypy: ignore-errors
+#
+# Copyright © 2025 Saeed Rasooli <saeed.gnu@gmail.com> (ilius)
+#
+# This program is a free software; you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation; either version 3, or (at your option)
+# any later version.
+#
+# You can get a copy of GNU General Public License along this program
+# But you can always get it from 
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+# GNU General Public License for more details.
+
+
+"""
+Resizable split-pane button widget for GTK 3.
+
+Provides a draggable handle used in GTK 3 layouts to let users resize adjacent
+panes (for example log vs. option panels).
+"""
+
+from __future__ import annotations
+
+from . import gdk, gtk
+from .utils import imageFromFile
+
+__all__ = ["ResizeButton"]
+
+
+class ResizeButton(gtk.EventBox):
+	"""Resize Button."""
+
+	def __init__(
+		self,
+		win: gtk.Window,
+		edge: gdk.WindowEdge = gdk.WindowEdge.SOUTH_EAST,
+	) -> None:
+		gtk.EventBox.__init__(self)
+		self.win = win
+		self.edge = edge
+		###
+		self.image = imageFromFile("resize.png")
+		self.add(self.image)
+		self.connect("button-press-event", self.buttonPress)
+
+	def buttonPress(self, _obj: gtk.Widget, gevent: gdk.ButtonEvent) -> None:
+		self.win.begin_resize_drag(
+			self.edge,
+			gevent.button,
+			int(gevent.x_root),
+			int(gevent.y_root),
+			gevent.time,
+		)

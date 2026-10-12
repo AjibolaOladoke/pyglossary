@@ -1,0 +1,59 @@
+"""
+PyGlossary Kobo Dictfile format plugin.
+
+Kobo plain ``.df`` dictionary files used by older Kobo tooling. Registers
+``Reader`` and ``Writer`` for the line-oriented Dictfile interchange format.
+"""
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+from pyglossary.option import (
+	BoolOption,
+	EncodingOption,
+)
+
+from .reader import Reader
+from .writer import Writer
+
+if TYPE_CHECKING:
+	from pyglossary.option import Option
+
+__all__ = [
+	"Reader",
+	"Writer",
+	"description",
+	"enable",
+	"extensionCreate",
+	"extensions",
+	"kind",
+	"lname",
+	"name",
+	"optionsProp",
+	"singleFile",
+	"website",
+	"wiki",
+]
+
+enable = True
+lname = "kobo_dictfile"
+name = "Dictfile"
+description = "Kobo E-Reader Dictfile (.df)"
+extensions = (".df",)
+extensionCreate = ".df"
+singleFile = True
+kind = "text"
+wiki = ""
+website = (
+	"",
+	"dictgen - dictutil",
+)
+# 
+
+relatedFormats: list[str] = ["Kobo"]
+
+optionsProp: dict[str, Option] = {
+	"encoding": EncodingOption(),
+	"extract_inline_images": BoolOption(comment="Extract inline images"),
+}

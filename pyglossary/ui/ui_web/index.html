@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="light dark" />
+    <title>PyGlossary Web</title>
+    <meta name="description" content="PyGlossary Web UI" />
+
+    <!-- Pico.css -->
+    <link rel="stylesheet" href="pico.green.min.css" />
+    <style>
+        :root {
+            --pico-font-family-sans-serif: Inter, system-ui, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, Helvetica, Arial, "Helvetica Neue", sans-serif, var(--pico-font-family-emoji);
+            --pico-font-size: 87.5%;
+            /* Original: 100% */
+            --pico-line-height: 1.25;
+            /* Original: 1.5 */
+            --pico-form-element-spacing-vertical: 0.5rem;
+            /* Original: 1rem */
+            --pico-form-element-spacing-horizontal: 1.0rem;
+            /* Original: 1.25rem */
+            --pico-border-radius: 0.375rem;
+            /* Original: 0.25rem */
+        }
+
+        @media (min-width: 576px) {
+            :root {
+                --pico-font-size: 87.5%;
+                /* Original: 106.25% */
+            }
+        }
+
+        @media (min-width: 768px) {
+            :root {
+                --pico-font-size: 87.5%;
+                /* Original: 112.5% */
+            }
+        }
+
+        @media (min-width: 1024px) {
+            :root {
+                --pico-font-size: 87.5%;
+                /* Original: 118.75% */
+            }
+        }
+
+        @media (min-width: 1280px) {
+            :root {
+                --pico-font-size: 87.5%;
+                /* Original: 125% */
+            }
+        }
+
+        @media (min-width: 1536px) {
+            :root {
+                --pico-font-size: 87.5%;
+                /* Original: 131.25% */
+            }
+        }
+
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            --pico-font-weight: 532;
+            /* Original: 700 */
+        }
+
+        article {
+            border: 1px solid var(--pico-muted-border-color);
+            /* Original doesn't have a border */
+            border-radius: calc(var(--pico-border-radius) * 2);
+            /* Original: var(--pico-border-radius) */
+        }
+
+        article>footer {
+            border-radius: calc(var(--pico-border-radius) * 2);
+            /* Original: var(--pico-border-radius) */
+        }
+
+        .container {
+            max-width: 704px;
+        }
+
+        #outputFormat,
+        #inputFormat {
+            max-width: 8em;
+        }
+
+        section textarea {
+            font-size: xx-small;
+            color: rgb(109, 109, 109);
+            padding: 3px;
+            height: auto;
+            font-family: 'Fira Mono', 'Jetbrains Mono', monospace;
+        }
+
+        #btnConvert {
+            font-size: 2em;
+            height: 2em;
+        }
+
+        pre {
+            font-size: 7px;
+            font-family: 'Fira Mono', 'Jetbrains Mono', Consolas, Monaco, Lucida Console, monospace;
+        }
+
+        article>textarea {
+            font-family: 'Fira Mono', 'Jetbrains Mono', Consolas, Monaco, Lucida Console, monospace;
+            font-size: smaller;
+        }
+
+        #preview1,
+        #preview2 {
+            padding: 3px;
+        }
+        .hidden {
+            display: none;
+            visibility: hidden;
+        }
+
+        /* ---- File picker modal ---- */
+        #filePicker {
+            max-width: 640px;
+        }
+        #filePicker article {
+            max-height: 80vh;
+            display: flex;
+            flex-direction: column;
+        }
+        #pickerPath {
+            font-family: 'Fira Code', 'Fira Mono', 'Jetbrains Mono', Consolas, Monaco, Lucida Console, monospace;
+            font-size: x-small;
+        }
+        #pickerList {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            overflow-y: auto;
+            flex: 1 1 auto;
+            max-height: 50vh;
+            border: 1px solid var(--pico-muted-border-color);
+            border-radius: var(--pico-border-radius);
+            background-color: var(--pico-background-color);
+            color: var(--pico-color);
+        }
+        #pickerList li {
+            padding: 0.3rem 0.6rem;
+            cursor: pointer;
+            font-size: small;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: var(--pico-color);
+            transition: background-color 0.08s ease;
+        }
+        #pickerList li.dir { font-weight: 532; }
+        #pickerList li.selected {
+            background-color: var(--pico-primary-background);
+            color: var(--pico-primary-inverse);
+        }
+        #pickerList li:hover {
+            background-color: var(--pico-dropdown-hover-background-color);
+        }
+        #pickerList li.selected:hover {
+            background-color: var(--pico-primary-hover-background);
+            color: var(--pico-primary-inverse);
+        }
+        #pickerFilter { margin: 0; }
+        #pickerNameRow { display: flex; gap: 0.5rem; align-items: center; }
+        #pickerNameRow label { margin: 0; flex: 0 0 auto; }
+        #pickerName { flex: 1; }
+        #pickerTruncated {
+            font-size: x-small;
+            color: var(--pico-muted-color);
+            padding: 0.2rem 0.6rem;
+        }
+        /* native Pico checkbox inside a plain label */
+        .pickerCheckboxRow {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            margin: 0.25rem 0;
+            font-size: small;
+        }
+        .pickerCheckboxRow input[type="checkbox"] {
+            margin: 0;
+            flex: 0 0 auto;
+        }
+        .pickerCheckboxRow label {
+            margin: 0;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* ---- Autocomplete dropdown ---- */
+        .ac-dropdown {
+            position: absolute;
+            z-index: 1000;
+            min-width: 18rem;
+            max-height: 14rem;
+            overflow-y: auto;
+            background: var(--pico-background-color);
+            color: var(--pico-color);
+            border: 1px solid var(--pico-muted-border-color);
+            border-radius: var(--pico-border-radius);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            font-size: small;
+        }
+        .ac-dropdown li {
+            padding: 0.25rem 0.5rem;
+            cursor: pointer;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: flex;
+            gap: 0.35rem;
+            align-items: center;
+            color: var(--pico-color);
+            transition: background-color 0.08s ease;
+        }
+        .ac-dropdown li.dir { font-weight: 532; }
+        .ac-dropdown li.ac-active {
+            background-color: var(--pico-primary-background);
+            color: var(--pico-primary-inverse);
+        }
+        .ac-dropdown li:hover {
+            background-color: var(--pico-dropdown-hover-background-color);
+        }
+        .ac-dropdown li.ac-active:hover {
+            background-color: var(--pico-primary-hover-background);
+            color: var(--pico-primary-inverse);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="container">
+        <nav>
+            <ul>
+                <li>
+                    <h1>
+                        <a style="text-decoration: none;" data-theme-switcher="auto" href="#" id="theme-switcher"
+                            class="theme-switcher">
+                            <!--noformat-->
+                            <svg height="24" viewBox="0 0 24 24" width="24" xmlns=""><path d="M12,18C11.11,18 10.26,17.8 9.5,17.45C11.56,16.5 13,14.42 13,12C13,9.58 11.56,7.5 9.5,6.55C10.26,6.2 11.11,6 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z"/></svg>
+                            <!--noformat-->
+                        </a> PyGlossary
+                    </h1>
+                </li>
+            </ul>
+            <ul dir="rtl">
+                <li>
+                    <details id="dropdown" class="dropdown">
+                        <!--noformat-->
+                        <summary role="button" class="outline"><svg height="24" viewBox="0 0 24 24" width="24" xmlns=""><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"/></svg></summary>
+                        <!--noformat-->
+                        <ul>
+                            <li class="primary"><a id="clearDisplay" href="#">&#10006; Clear log</a></li>
+                            <li class="primary"><a target="_blank" href="/browse.html">&#x1F50E; Browse...</a></li>
+                            <li class="primary"><a target="_blank"
+                                    href="">&#128279; Docs</a>
+                            </li>
+                            <li class="primary"><a target="_blank"
+                                    href="">&#128279;
+                                    Formats</a></li>
+                            <li class="primary"><a target="_blank"
+                                    href="">&#128279;
+                                    Plugins</a></li>
+                            <li class="primary"><a target="_blank" href="">&#128279;
+                                    Source</a></li>
+                            <li class="primary"><a id="stopServer" target="_blank" href="#">&#x23FB; Stop</a></li>
+                        </ul>
+                    </details>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container">
+        <form name="frm">
+            <section id="input">
+                <h5>Input file</h5>
+                <div class="grid">
+                    <fieldset role="group">
+                        <input type="search" id="inputFilename" autocomplete="url" aria-autocomplete="both" name="inputFilename" placeholder="<input file path>"
+                            autocomplete="on" data-tooltip="Tooltip" required>
+                        <select id="inputFormat" name="inputFormat" required>
+                            <option></option>
+                        </select>
+                        <input type="button" class="outline secondary picker-btn" data-target="inputFilename" data-mode="open" value="&#128193;" title="Browse for file">
+                        <a target="_blank" class="button outline secondary browse hidden" href="/browse.html">
+                            <input type="button" class="outline secondary" id="preview1" value="&#x1F50E;">
+                        </a>
+                    </fieldset>
+                </div>
+            </section>
+            <section id="output">
+                <h5>Output file</h5>
+                <div class="grid">
+                    <fieldset role="group">
+                        <input type="search" autocomplete="url" aria-autocomplete="both" id="outputFilename" name="outputFilename" placeholder="<output file path>"
+                            autocomplete="on" required />
+                        <select id="outputFormat" tabindex="-1" name="outputFormat" required>
+                            <option></option>
+                        </select>
+                        <input type="button" tabindex="-1" class="outline secondary picker-btn" data-target="outputFilename" data-mode="save" value="&#128193;" title="Browse for output location">
+                        <a target="_blank" class="button outline secondary browse hidden" href="/browse.html">
+                            <input type="button" tabindex="-1" class="outline secondary" id="preview2" value="&#x1F50E;">
+                        </a>
+                    </fieldset>
+                </div>
+            </section>
+            <!-- ./ Preview -->
+
+            <!-- Convert -->
+            <section>
+                <fieldset role="group">
+                    <button id="btnOptions" name="btnOptions" class="outline">Options</button>
+                    <input id="btnConvert" name="btnConvert" type="submit" value="Convert" class="outline" />
+                </fieldset>
+            </section>
+            <!-- ./ Convert -->
+
+            <section>
+                <textarea rows="15" id="console-area" name="console-area" readonly></textarea>
+            </section>
+
+            <!-- Progress -->
+            <section>
+                <h5 id="progress-text"></h5>
+                <progress id="progress" value="0" max="100"></progress>
+            </section>
+            <!-- ./ Progress -->
+
+            <!-- Accordions -->
+            <section id="help">
+                <h5></h5>
+                <details>
+                    <summary>&#9432; How to convert a dictionary?</summary>
+                    <p>
+                    <ol>
+                        <li>Click &#128193; or type in the <b>Input file</b>
+                            field to select the source file.</li>
+                        <li>Select input file format if not detected automatically.</li>
+                        <li>Click &#128193; or type in the <b>Output file</b> field to pick the output file.</li>
+                        <li>Select a <a target="_blank"
+                                href="">target
+                                format</a> to convert to</li>
+                        <li>Click the <b>Convert</b> button and wait for the conversion to complete. For large files the
+                            operation can take several minutes.</li>
+                    </ol>
+                    </p>
+                </details>
+            </section>
+            <!-- ./ Accordions -->
+        </form>
+    </main>
+    <!-- ./ Main -->
+
+    <hr>
+
+    <footer class="container">
+        <small><a target="_blank" href="">
+                <!--noformat-->
+                <svg xmlns="" height="20" viewBox="0 0 16 16" width="20" aria-hidden="true" class="d-block"><path fill="currentColor" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+            <!--noformat-->
+            </a>
+        </small>
+    </footer>
+    <!-- ConfigDialog -->
+    <dialog>
+        <article>
+            <h2>Conversion Options</h2>
+            <p>
+                Please enter valid JSON for custom conversion options.</p>
+            <p>Example config (See available options in <a target="_blank"
+                    href="">plugins
+                    options reference</a>):</p>
+            <section id="configExample">
+                <details>
+                    <summary>&#x002B; Click for an example</summary>
+                    <p><!--noformat-->
+                    <pre>{
+ "convertOptions": {
+  "sortKeyName": "headword_lower:es_ES",
+  "sortEncoding": "utf-8",
+ },
+ "readOptions": {
+  "encoding": "utf-8",
+  "example_color": "blue"
+ },
+ "writeOptions": {
+  "resources": false
+ }
+}</pre><!--noformat-->
+                    </p>
+                </details>
+            </section>
+
+            <textarea id="allOptions" name="allOptions" id="" cols="30" rows="10"></textarea>
+            <footer>
+                <button id="btnOptCancel" class="secondary">
+                    Cancel
+                </button>
+                <button id="btnOptOk">Confirm</button>
+            </footer>
+        </article>
+    </dialog>
+    <!-- ./ ConfigDialog -->
+
+    <!-- FilePickerDialog -->
+    <dialog id="filePicker">
+        <article>
+            <h2 id="pickerTitle">Browse</h2>
+            <fieldset role="group">
+                <input type="button" id="pickerUp" value="&#x2191; Up" class="outline secondary">
+                <input type="search" id="pickerPath" placeholder="/current/path" autocomplete="off">
+                <input type="button" id="pickerGo" value="Go" class="outline secondary">
+            </fieldset>
+            <input type="search" id="pickerFilter" placeholder="filter entries..." autocomplete="off">
+            <ul id="pickerList"></ul>
+            <div id="pickerTruncated" class="hidden"></div>
+            <div id="pickerNameRow" class="hidden">
+                <label for="pickerName">File:</label>
+                <input type="text" id="pickerName" placeholder="filename (for save)" autocomplete="off">
+            </div>
+            <div class="pickerCheckboxRow">
+                <input type="checkbox" id="pickerHidden">
+                <label for="pickerHidden">Show hidden files</label>
+            </div>
+            <footer>
+                <button id="pickerCancel" class="secondary">Cancel</button>
+                <button id="pickerChoose">Choose</button>
+            </footer>
+        </article>
+    </dialog>
+    <!-- ./ FilePickerDialog -->
+
+    <!-- Autocomplete dropdown -->
+    <ul id="acDropdown" class="ac-dropdown hidden"></ul>
+
+    <script>
+        document.getElementById('theme-switcher').addEventListener('click', function () {
+            if (this.dataset.themeSwitcher !== 'dark') {
+                this.dataset.themeSwitcher = 'dark';
+            } else {
+                this.dataset.themeSwitcher = 'light';
+            }
+        });
+    </script>
+
+    <!-- Minimal theme switcher -->
+    <script src="minimal-theme-switcher.js"></script>
+
+    <script>
+        // unix-style permissions
+        const CAN = {
+            READ: 1,  // 0b01
+            WRITE: 2, // 0b10
+        };
+        const FIELD_IDS_PERSISTABLE = ['inputFilename', 'inputFormat', 'outputFilename', 'outputFormat'];
+        const KEY_PG_OPTIONS = 'pg_ALL_OPTIONS';
+        const MAX_PREVIEW_ENTRIES = 42;
+
+        const consoleArea = document.getElementById('console-area');
+        const progressBar = document.getElementById('progress');
+        const progressText = document.getElementById('progress-text');
+
+        const form = window.document.forms.frm;
+
+        function log(msg) {
+            consoleArea.value += `${msg}\n`;
+            consoleArea.scrollTop = consoleArea.scrollHeight;
+        }
+
+        function initWsConnection() {
+            const socket = new WebSocket('/ws');
+            window.ws = socket;
+
+            socket.addEventListener('open', () => {
+                console.log('WebSocket connection established');
+                socket.send('ping');
+            });
+
+            socket.addEventListener('message', (event) => {
+                // console.log(event.data)
+                const message = JSON.parse(event.data);
+
+                if (message.type == 'progress') {
+                    progressBar.value = message.ratio * 100;
+                    progressText.innerText = message.text;
+                } else if (message.type == 'info') {
+                    log(message.text);
+                } else if (message.type == 'listDir') {
+                    handleListDirResponse(message);
+                }
+            });
+
+            socket.addEventListener('error', (error) => {
+                msg = `WebSocket error: ${error}\n`;
+                log(msg);
+            });
+
+            socket.addEventListener('close', () => {
+                log('WebSocket connection closed');
+            });
+        }
+
+        function loadConfig() {
+            fetch("/config")
+                .then(response => {
+                    if (!response.ok) {
+                        log(`Failed to fetch configuration: ${response.status} ${response.text()}`);
+                        return Promise.reject(`Failed to fetch configuration: ${response.statusText}`);
+                    } else {
+                        log('config load ✔️');
+                    }
+                    return response.json();
+                })
+                .then(formats => {
+                    const readFragment = document.createDocumentFragment();
+                    const writeFragment = document.createDocumentFragment();
+                    window.formats = formats;
+
+                    Object.keys(formats)
+                        .sort((a, b) => formats[a].desc.localeCompare(formats[b].desc))
+                        .forEach(key => {
+                            const plug = formats[key];
+                            if (plug.can & CAN.READ) {
+                                readFragment.appendChild(new Option(plug.desc, key));
+                            }
+                            if (plug.can & CAN.WRITE) {
+                                writeFragment.appendChild(new Option(plug.desc, key));
+                            }
+                        });
+
+                    form.inputFormat.appendChild(readFragment);
+                    form.outputFormat.appendChild(writeFragment);
+                }).then(() => {
+                    restoreFormState();
+                }).then(() => {
+                    attachListenersPostInit();
+                    form && form.inputFilename && updatePreviewLink(form.inputFilename);
+                    form && form.outputFilename && updatePreviewLink(form.outputFilename);
+
+                })
+                .catch(error => {
+                    log(`Error populating dropdowns: ${error}`);
+                });
+        }
+
+        function toggleConvertButton() {
+            const btnConv = form.btnConvert;
+            btnConv.classList.toggle('outline');
+            btnConv.disabled = !btnConv.disabled;
+        }
+
+        function toggleAttr(elem, attr) {
+            elem.hasAttribute(attr)
+                ? elem.removeAttribute(attr)
+                : elem.setAttribute(attr, '');
+        }
+
+        function updatePreviewLink(inputEl) {
+            console.log(inputEl);
+            if (inputEl) {
+                const previewLink = inputEl.parentElement.querySelector('a.browse');
+                const previewUrl = new URL(previewLink.href);
+                const formatSelect = inputEl.parentElement.querySelector('select');
+                previewUrl.searchParams.set('path', inputEl.value);
+                previewUrl.searchParams.set('max', MAX_PREVIEW_ENTRIES);
+                
+                if (inputEl.value && formatSelect.value) {
+                    previewUrl.searchParams.set('format', formatSelect.value);
+                    previewLink.classList.remove('hidden');
+                } else {
+                    previewLink.classList.add('hidden');
+                }
+
+                previewLink.href = previewUrl.toString();
+            }
+        }
+
+        function attachListeners() {
+            document.querySelector('input[type="submit"]').addEventListener('click', async (event) => {
+
+                progressBar.value = 0;
+                log('Starting new conversion job. Please wait... ⏳');
+
+                if (form.checkValidity()) {
+                    event.preventDefault();
+                    log('Conversion started, please wait...');
+
+                    const inputFilename = form.inputFilename.value;
+                    const inputFormat = form.inputFormat.value;
+                    const outputFilename = form.outputFilename.value;
+                    const outputFormat = form.outputFormat.value;
+                    const allOptions = JSON.parse(localStorage.getItem(KEY_PG_OPTIONS) || '{}');
+
+
+                    try {
+                        toggleConvertButton()
+                        const response = await fetch('/convert', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({
+                                inputFilename,
+                                inputFormat,
+                                outputFilename,
+                                outputFormat,
+                                convertOptions: allOptions['convertOptions'] || {},
+                                readOptions: allOptions['readOptions'] || {},
+                                writeOptions: allOptions['writeOptions'] || {},
+                            }),
+                        });
+
+                        if (!response.ok) {
+                            log(`Failed to start conversion: ${response.statusText} ${response.json()}`);
+                        }
+                        toggleConvertButton();
+
+                    } catch (error) {
+                        log(`Error during conversion: ${error}`);
+                        toggleConvertButton();
+                    }
+                }
+            });
+
+            document.getElementById('clearDisplay').addEventListener('click', (evt) => {
+                evt.preventDefault();
+                evt.stopImmediatePropagation();
+                consoleArea.value = '';
+            });
+            document.getElementById('stopServer').addEventListener('click', (evt) => {
+                evt.preventDefault();
+                evt.stopImmediatePropagation();
+                if (window.ws) {
+                    ws.send('exit');
+                }
+                document.getElementById('dropdown').removeAttribute('open')
+                log('Server stopped! Window can now be closed.');
+            });
+
+            form.btnOptions.addEventListener('click', (evt) => {
+                evt.preventDefault();
+                evt.stopImmediatePropagation();
+                const optionsDialog = document.querySelector('dialog');
+                toggleAttr(optionsDialog, 'open');
+
+                const allOptions = localStorage.getItem(KEY_PG_OPTIONS);
+
+                if (allOptions) {
+                    document.getElementById("allOptions").value = JSON.stringify(JSON.parse(allOptions), null, 1);
+                }
+            });
+
+            document.getElementById('btnOptOk').addEventListener('click', (evt) => {
+                evt.preventDefault();
+                evt.stopImmediatePropagation();
+                const optionsDialog = document.querySelector('dialog');
+                // if nothing was entered then set to empty object
+                const allOptions = document.getElementById("allOptions").value || "{}";
+                try {
+                    const allOptionsObj = JSON.parse(allOptions);
+                    localStorage.setItem(KEY_PG_OPTIONS, JSON.stringify(allOptionsObj))
+                    log(`options saved ✔️\n${allOptions}`);
+                } catch (error) {
+                    console.error('Invalid JSON string:', error.message);
+                    log(`invalid options ${error.message} JSON\n`);
+                }
+
+                toggleAttr(optionsDialog, 'open');
+
+            });
+
+            document.getElementById('btnOptCancel').addEventListener('click', (evt) => {
+                evt.preventDefault();
+                evt.stopImmediatePropagation();
+                const optionsDialog = document.querySelector('dialog');
+                toggleAttr(optionsDialog, 'open');
+                log('options dialog cancelled without saving');
+            });
+
+            FIELD_IDS_PERSISTABLE.forEach(fieldId => {
+                const el = document.getElementById(fieldId);
+                el.addEventListener('change', () => {
+
+                    localStorage.setItem(`pg_${fieldId}`, el.value);
+                });
+            });
+        }
+
+        function attachListenersPostInit() {
+            form.inputFilename.oninput = (e) => {
+                getFormatFromPath("inputFilename", 'inputFormat');
+                updatePreviewLink(e.target);
+            };
+
+            form.outputFilename.oninput = (e) => {
+                getFormatFromPath("outputFilename", 'outputFormat');
+                updatePreviewLink(e.target);
+            };
+        }
+
+        const findFormatByExtension = (formats, ext) => {
+            for (const key in formats) {
+                if (formats[key].ext === ext) return key;
+            }
+        };
+
+        function getFormatFromPath(sourceFieldId, targetFieldId) {
+            if (window.formats) {
+                const extension = document.getElementById(sourceFieldId).value.split('.').pop().toLowerCase();
+                const dictFormat = findFormatByExtension(window.formats, `.${extension}`);
+                if (dictFormat) {
+                    document.getElementById(targetFieldId).value = dictFormat;
+                    localStorage.setItem(`pg_${targetFieldId}`, dictFormat);
+                }
+            }
+        }
+
+
+        function restoreFormState() {
+            FIELD_IDS_PERSISTABLE.forEach(fieldId => {
+                const el = document.getElementById(fieldId);
+                const savedValue = localStorage.getItem(`pg_${fieldId}`);
+
+                if (savedValue) {
+                    el.value = savedValue;
+                    if (el.type == 'search') {
+                        updatePreviewLink(el);
+                    }
+                }
+            });
+        }
+
+        window.onload = function () {
+            loadConfig();
+            attachListeners();
+            initWsConnection();
+            initFilePicker();
+            initAutocomplete();
+        };
+    </script>
+
+    <script>
+        // ---------------- File picker + autocomplete ----------------
+        const SEP = '/'; // use posix sep for display; server resolves anyway
+        const KEY_PICKER_HIDDEN = 'pg_picker_showHidden';
+        const KEY_PICKER_LASTDIR = 'pg_picker_lastDir';
+
+        // Track the single open WS so listDir requests can be sent.
+        function sendListDir(reqId, target, path, showHidden) {
+            if (!window.ws || window.ws.readyState !== WebSocket.OPEN) {
+                return false;
+            }
+            window.ws.send(JSON.stringify({
+                action: 'listDir',
+                reqId,
+                target,
+                path,
+                showHidden,
+            }));
+            return true;
+        }
+
+        // Pending listDir requests keyed by reqId -> callback
+        const listDirCallbacks = new Map();
+        let listDirSeq = 0;
+
+        function requestListDir(target, path, showHidden) {
+            return new Promise((resolve, reject) => {
+                if (!window.ws || window.ws.readyState !== WebSocket.OPEN) {
+                    reject(new Error('WebSocket not open'));
+                    return;
+                }
+                const reqId = ++listDirSeq;
+                listDirCallbacks.set(reqId, { resolve, reject });
+                sendListDir(reqId, target, path, showHidden);
+                // timeout safety
+                setTimeout(() => {
+                    if (listDirCallbacks.has(reqId)) {
+                        listDirCallbacks.delete(reqId);
+                        reject(new Error('listDir timeout'));
+                    }
+                }, 5000);
+            });
+        }
+
+        function handleListDirResponse(message) {
+            const cb = listDirCallbacks.get(message.reqId);
+            if (cb) {
+                listDirCallbacks.delete(message.reqId);
+                if (message.error) cb.reject(new Error(message.error));
+                else cb.resolve(message);
+            } else if (message.error) {
+                log(`listDir error: ${message.error}`);
+            }
+        }
+
+        function joinPath(dir, name) {
+            if (!dir) return name;
+            if (dir.endsWith('/') || dir.endsWith('\\')) return dir + name;
+            return dir + SEP + name;
+        }
+
+        function parentDir(p) {
+            // returns parent path using the last separator found
+            const idx = Math.max(p.lastIndexOf('/'), p.lastIndexOf('\\'));
+            if (idx <= 0) return p.startsWith('/') ? '/' : '~';
+            return p.slice(0, idx);
+        }
+
+        function splitPathForAutocomplete(value) {
+            // returns {dir, prefix}; dir is what we list, prefix is what we filter on
+            if (!value) return { dir: '~', prefix: '' };
+            const v = value.trim();
+            const idx = Math.max(v.lastIndexOf('/'), v.lastIndexOf('\\'));
+            if (idx === -1) return { dir: '~', prefix: v };
+            return { dir: v.slice(0, idx), prefix: v.slice(idx + 1) };
+        }
+
+        // ---------------- Autocomplete ----------------
+        let acState = {
+            input: null,
+            entries: [],
+            filtered: [],
+            active: -1,
+            lastDir: null,
+            lastInputId: null,
+            reqSeq: 0,
+            debounce: null,
+            blurTimer: null,
+        };
+        const acDropdown = document.getElementById('acDropdown');
+
+        function initAutocomplete() {
+            ['inputFilename', 'outputFilename'].forEach(id => {
+                const el = document.getElementById(id);
+                el.addEventListener('focus', () => {
+                    // Cancel any pending blur-hide from a previous input
+                    clearTimeout(acState.blurTimer);
+                    maybeShowAutocomplete(el);
+                });
+                el.addEventListener('input', () => {
+                    clearTimeout(acState.debounce);
+                    acState.debounce = setTimeout(() => maybeShowAutocomplete(el), 120);
+                });
+                el.addEventListener('keydown', e => onAutocompleteKeydown(e));
+                el.addEventListener('blur', () => {
+                    // delay so click on a suggestion registers
+                    acState.blurTimer = setTimeout(hideAutocomplete, 200);
+                });
+            });
+            // Reposition on window scroll; hide on scroll of other elements
+            // but NEVER on scroll inside the dropdown itself
+            document.addEventListener('scroll', (e) => {
+                if (acDropdown.classList.contains('hidden')) return;
+                if (e.target === acDropdown || acDropdown.contains(e.target)) return;
+                if (e.target === document || e.target === document.documentElement || e.target === document.body || e.target === window) {
+                    repositionAutocomplete();
+                } else {
+                    hideAutocomplete();
+                }
+            }, true);
+            window.addEventListener('resize', () => {
+                if (!acDropdown.classList.contains('hidden')) repositionAutocomplete();
+            });
+        }
+
+        async function maybeShowAutocomplete(inputEl) {
+            acState.input = inputEl;
+            acState.lastInputId = inputEl.id;
+            const { dir, prefix } = splitPathForAutocomplete(inputEl.value);
+
+            // Track the request sequence to avoid stale responses overwriting state
+            const reqSeq = ++acState.reqSeq;
+
+            if (acState.lastDir !== dir || acState.lastInputId !== inputEl.id) {
+                acState.lastDir = dir;
+                acState.lastInputId = inputEl.id;
+                acState.entries = [];
+                try {
+                    const resp = await requestListDir(inputEl.id, dir, pickerShowHidden());
+                    // Guard against stale responses from a previous input/dir
+                    if (reqSeq !== acState.reqSeq || acState.input !== inputEl) return;
+                    acState.entries = resp.entries || [];
+                } catch (e) {
+                    if (reqSeq === acState.reqSeq && acState.input === inputEl) hideAutocomplete();
+                    return;
+                }
+            }
+            if (reqSeq !== acState.reqSeq || acState.input !== inputEl) return;
+            renderAutocomplete(prefix, inputEl);
+        }
+
+        function renderAutocomplete(prefix, inputEl) {
+            const filtered = acState.entries.filter(e =>
+                e.name.toLowerCase().startsWith(prefix.toLowerCase())
+            );
+            if (!filtered.length) {
+                hideAutocomplete();
+                return;
+            }
+            acState.active = -1;
+            acDropdown.innerHTML = '';
+            const max = 200;
+            filtered.slice(0, max).forEach((e, i) => {
+                const li = document.createElement('li');
+                li.className = e.isDir ? 'dir' : '';
+                li.textContent = (e.isDir ? '\uD83D\uDCC1 ' : '\uD83D\uDCC4 ') + e.name;
+                li.dataset.idx = i;
+                li.addEventListener('mousedown', ev => {
+                    ev.preventDefault();
+                    acceptAutocomplete(filtered[i]);
+                });
+                acDropdown.appendChild(li);
+            });
+            acState.filtered = filtered;
+            repositionAutocomplete();
+            acDropdown.classList.remove('hidden');
+        }
+
+        function repositionAutocomplete() {
+            const inputEl = acState.input;
+            if (!inputEl) return;
+            const r = inputEl.getBoundingClientRect();
+            if (r.bottom === 0 && r.top === 0) {
+                hideAutocomplete();
+                return;
+            }
+            acDropdown.style.top = (window.scrollY + r.bottom + 2) + 'px';
+            acDropdown.style.left = (window.scrollX + r.left) + 'px';
+            acDropdown.style.minWidth = r.width + 'px';
+        }
+
+        function hideAutocomplete() {
+            acDropdown.classList.add('hidden');
+            acDropdown.innerHTML = '';
+            acState.active = -1;
+            acState.filtered = [];
+        }
+
+        function acceptAutocomplete(entry) {
+            const inputEl = acState.input;
+            if (!inputEl) return;
+            const { dir } = splitPathForAutocomplete(inputEl.value);
+            const newPath = joinPath(dir, entry.name);
+            inputEl.value = entry.isDir ? newPath + SEP : newPath;
+            inputEl.dispatchEvent(new Event('input'));
+            if (entry.isDir) {
+                // descend: refresh listing for the new dir
+                acState.lastDir = null;
+                maybeShowAutocomplete(inputEl);
+            } else {
+                hideAutocomplete();
+                inputEl.focus();
+            }
+        }
+
+        function onAutocompleteKeydown(e) {
+            const list = acState.filtered;
+            // If dropdown is hidden, ArrowDown should reopen it
+            if (acDropdown.classList.contains('hidden')) {
+                if (e.key === 'ArrowDown' && acState.input === e.target) {
+                    e.preventDefault();
+                    maybeShowAutocomplete(e.target);
+                }
+                return;
+            }
+            if (!list || !list.length) return;
+            const count = Math.min(list.length, 200);
+            if (e.key === 'ArrowDown') {
+                e.preventDefault();
+                acState.active = acState.active < 0 ? 0 : (acState.active + 1) % count;
+                updateAcActive();
+            } else if (e.key === 'ArrowUp') {
+                e.preventDefault();
+                acState.active = acState.active < 0 ? count - 1 : (acState.active - 1 + count) % count;
+                updateAcActive();
+            } else if (e.key === 'Enter' || e.key === 'Tab') {
+                if (acState.active >= 0) {
+                    e.preventDefault();
+                    acceptAutocomplete(list[acState.active]);
+                }
+            } else if (e.key === 'Escape') {
+                e.preventDefault();
+                hideAutocomplete();
+            }
+        }
+
+        function updateAcActive() {
+            const items = acDropdown.children;
+            for (let i = 0; i < items.length; i++) {
+                items[i].classList.toggle('ac-active', i === acState.active);
+            }
+            // Manually scroll the active item into view WITHOUT triggering
+            // a scroll event that could cascade back and dismiss the dropdown
+            if (acState.active >= 0 && items[acState.active]) {
+                const item = items[acState.active];
+                const ddTop = acDropdown.scrollTop;
+                const ddBottom = ddTop + acDropdown.clientHeight;
+                const itemTop = item.offsetTop;
+                const itemBottom = itemTop + item.offsetHeight;
+                if (itemTop < ddTop) {
+                    acDropdown.scrollTop = itemTop;
+                } else if (itemBottom > ddBottom) {
+                    acDropdown.scrollTop = itemBottom - acDropdown.clientHeight;
+                }
+            }
+        }
+
+        // ---------------- Modal picker ----------------
+        const pickerDialog = document.getElementById('filePicker');
+        const pickerList = document.getElementById('pickerList');
+        const pickerPath = document.getElementById('pickerPath');
+        const pickerFilter = document.getElementById('pickerFilter');
+        const pickerNameRow = document.getElementById('pickerNameRow');
+        const pickerName = document.getElementById('pickerName');
+        const pickerTitle = document.getElementById('pickerTitle');
+        const pickerHidden = document.getElementById('pickerHidden');
+        const pickerTruncated = document.getElementById('pickerTruncated');
+        let pickerState = {
+            target: null,    // input id
+            mode: 'open',    // 'open' or 'save'
+            currentDir: '~',
+            entries: [],
+            selectedFile: null,
+        };
+
+        function pickerShowHidden() {
+            return localStorage.getItem(KEY_PICKER_HIDDEN) === '1';
+        }
+
+        function initFilePicker() {
+            pickerHidden.checked = pickerShowHidden();
+            pickerHidden.addEventListener('change', () => {
+                localStorage.setItem(KEY_PICKER_HIDDEN, pickerHidden.checked ? '1' : '0');
+                navigatePicker(pickerState.currentDir);
+            });
+            document.querySelectorAll('.picker-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    openPicker(btn.dataset.target, btn.dataset.mode);
+                });
+            });
+            document.getElementById('pickerUp').addEventListener('click', () => {
+                navigatePicker(parentDir(pickerState.currentDir));
+            });
+            document.getElementById('pickerGo').addEventListener('click', () => {
+                navigatePicker(pickerPath.value || '~');
+            });
+            pickerPath.addEventListener('keydown', e => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    navigatePicker(pickerPath.value || '~');
+                }
+            });
+            pickerFilter.addEventListener('input', () => renderPickerEntries());
+            pickerName.addEventListener('input', () => {
+                pickerState.selectedFile = pickerName.value;
+            });
+            pickerName.addEventListener('keydown', e => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    confirmPicker();
+                }
+            });
+            document.getElementById('pickerCancel').addEventListener('click', closePicker);
+            document.getElementById('pickerChoose').addEventListener('click', confirmPicker);
+            pickerDialog.addEventListener('close', () => {
+                if (pickerDialog.returnValue === 'choose') return;
+            });
+        }
+
+        function openPicker(targetId, mode) {
+            pickerState.target = targetId;
+            pickerState.mode = mode;
+            pickerTitle.textContent = mode === 'save' ? 'Save to...' : 'Open file...';
+            pickerNameRow.classList.toggle('hidden', mode !== 'save');
+            const current = document.getElementById(targetId).value;
+            let startDir = localStorage.getItem(KEY_PICKER_LASTDIR) || '~';
+            if (current) {
+                const { dir } = splitPathForAutocomplete(current);
+                startDir = dir || startDir;
+            }
+            pickerName.value = mode === 'save' ? (current ? current.split(/[\\/]/).pop() : '') : '';
+            pickerFilter.value = '';
+            pickerDialog.showModal();
+            navigatePicker(startDir);
+        }
+
+        function closePicker() {
+            pickerDialog.close();
+        }
+
+        async function navigatePicker(path) {
+            pickerState.currentDir = path;
+            pickerPath.value = path;
+            pickerList.innerHTML = '';
+            pickerTruncated.classList.add('hidden');
+            try {
+                const resp = await requestListDir(pickerState.target, path, pickerHidden.checked);
+                pickerState.entries = resp.entries || [];
+                pickerState.currentDir = resp.path || path;
+                pickerPath.value = pickerState.currentDir;
+                if (resp.selected) {
+                    pickerState.selectedFile = resp.selected;
+                    if (pickerState.mode === 'save') pickerName.value = resp.selected;
+                }
+                if (resp.truncated) {
+                    pickerTruncated.textContent = `Listing truncated at ${resp.entries.length} entries. Use the filter box to narrow down.`;
+                    pickerTruncated.classList.remove('hidden');
+                }
+                renderPickerEntries();
+            } catch (e) {
+                const li = document.createElement('li');
+                li.textContent = '\u26A0 ' + e.message;
+                li.style.color = 'var(--pico-primary)';
+                pickerList.appendChild(li);
+            }
+        }
+
+        function renderPickerEntries() {
+            const q = (pickerFilter.value || '').toLowerCase();
+            pickerList.innerHTML = '';
+            const entries = pickerState.entries.filter(e =>
+                !q || e.name.toLowerCase().includes(q)
+            );
+            entries.slice(0, 1000).forEach(e => {
+                const li = document.createElement('li');
+                li.className = (e.isDir ? 'dir' : '') +
+                    (e.name === pickerState.selectedFile ? ' selected' : '');
+                li.textContent = (e.isDir ? '\uD83D\uDCC1 ' : '\uD83D\uDCC4 ') + e.name;
+                li.addEventListener('click', () => onPickerRowClick(e));
+                li.addEventListener('dblclick', () => onPickerRowDblClick(e));
+                pickerList.appendChild(li);
+            });
+        }
+
+        function onPickerRowClick(entry) {
+            if (entry.isDir) return; // single click on dir does nothing, dblclick descends
+            pickerState.selectedFile = entry.name;
+            if (pickerState.mode === 'save') {
+                pickerName.value = entry.name;
+            }
+            renderPickerEntries();
+        }
+
+        function onPickerRowDblClick(entry) {
+            if (entry.isDir) {
+                navigatePicker(joinPath(pickerState.currentDir, entry.name));
+            } else if (pickerState.mode === 'open') {
+                commitPicked(joinPath(pickerState.currentDir, entry.name));
+            } else {
+                pickerName.value = entry.name;
+                pickerState.selectedFile = entry.name;
+                renderPickerEntries();
+            }
+        }
+
+        function confirmPicker() {
+            if (pickerState.mode === 'save') {
+                const name = (pickerName.value || '').trim();
+                if (!name) {
+                    pickerName.focus();
+                    return;
+                }
+                const full = joinPath(pickerState.currentDir, name);
+                const existing = pickerState.entries.find(e => e.name === name && !e.isDir);
+                if (existing && !confirm(`File exists: ${full}\nOverwrite?`)) {
+                    return;
+                }
+                commitPicked(full);
+            } else {
+                if (!pickerState.selectedFile) {
+                    if (pickerState.entries.length === 1 && !pickerState.entries[0].isDir) {
+                        pickerState.selectedFile = pickerState.entries[0].name;
+                    } else {
+                        pickerList.focus();
+                        return;
+                    }
+                }
+                commitPicked(joinPath(pickerState.currentDir, pickerState.selectedFile));
+            }
+        }
+
+        function commitPicked(fullPath) {
+            const input = document.getElementById(pickerState.target);
+            input.value = fullPath;
+            input.dispatchEvent(new Event('input'));
+            localStorage.setItem(KEY_PICKER_LASTDIR, pickerState.currentDir);
+            pickerDialog.close('choose');
+            hideAutocomplete();
+        }
+    </script>
+</body>
+
+</html>

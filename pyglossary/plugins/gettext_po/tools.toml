@@ -1,0 +1,9 @@
+[gettext]
+web = ""
+platforms = [ "Linux", "Windows",]
+license = "GPL"
+
+[poEdit]
+web = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "MIT / Shareware"

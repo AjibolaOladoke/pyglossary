@@ -1,0 +1,6 @@
+["StarDict-Editor (Tools)"]
+web = ""
+source = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "GPL"
+plang = "C"

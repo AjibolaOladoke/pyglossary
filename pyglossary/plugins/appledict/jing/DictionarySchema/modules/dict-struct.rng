@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Dictionary Structure Module -->
+<grammar xmlns="">
+
+
+<start>
+	<ref name="dictionary"/>
+</start>
+
+<define name="entry">
+	<element name="entry" ns="">
+		<ref name="entry.attlist"/>
+		<zeroOrMore>
+			<ref name="index"/>
+		</zeroOrMore>
+		<ref name="Flow.model"/>
+	</element>
+</define>
+
+<define name="entry.attlist">
+	<ref name="id.attrib"/>
+	<optional>
+		<ref name="parental-control.attrib"/>
+	</optional>
+	<optional>
+		<attribute name="title" ns="">
+			<text/>
+		</attribute>
+	</optional>
+</define>
+
+<define name="index">
+	<element name="index" ns="">
+		<ref name="index.attlist"/>
+	</element>
+</define>
+
+<define name="index.attlist">
+	<attribute name="value" ns="">
+		<text/>
+	</attribute>
+	<optional>
+		<attribute name="title" ns="">
+			<text/>
+		</attribute>
+	</optional>
+	<optional>
+		<ref name="parental-control.attrib"/>
+	</optional>
+	<optional>
+		<ref name="priority.attrib"/>
+	</optional>
+	<optional>
+		<attribute name="anchor" ns="">
+			<text/>
+		</attribute>
+	</optional>
+	<optional>
+		<attribute name="yomi" ns="">
+			<text/>
+		</attribute>
+	</optional>
+
+</define>
+
+<define name="dictionary">
+	<element name="dictionary" ns="">
+		<zeroOrMore>
+			<ref name="style"/>
+		</zeroOrMore>
+		<ref name="dictionary.attlist"/>
+		<oneOrMore>
+			<ref name="entry"/>
+		</oneOrMore>
+	</element>
+</define>
+
+<define name="dictionary.attlist">
+	<ref name="XHTML.version.attrib"/>
+	<ref name="I18n.attrib"/>
+</define>
+
+<define name="XHTML.version.attrib">
+	<optional>
+		<attribute name="version">
+			<ref name="FPI.datatype"/>
+		</attribute>
+	</optional>
+</define>
+
+<!-- add new attribute for div,span -->
+<define name="priority.attrib">
+	<attribute name="priority" ns="">
+		<ref name="Number.datatype"/>
+	</attribute>
+</define>
+
+<define name="parental-control.attrib">
+	<attribute name="parental-control" ns="">
+		<value>1</value>
+	</attribute>
+</define>
+
+<define name="pr.attrib">
+	<attribute name="pr" ns="">
+		<text/>
+	</attribute>
+</define>
+
+
+<!-- Add attribute for XHTML -->
+
+<define name="div.attlist" combine="interleave">
+	<optional>
+		<ref name="priority.attrib"/>
+	</optional>
+	<optional>
+		<ref name="parental-control.attrib"/>
+	</optional>
+	<optional>
+		<ref name="pr.attrib"/>
+	</optional>
+</define>
+
+<define name="span.attlist" combine="interleave">
+	<optional>
+		<ref name="priority.attrib"/>
+	</optional>
+	<optional>
+		<ref name="parental-control.attrib"/>
+	</optional>
+	<optional>
+		<ref name="pr.attrib"/>
+	</optional>
+</define>
+
+
+</grammar>

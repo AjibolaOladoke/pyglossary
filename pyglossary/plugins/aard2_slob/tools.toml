@@ -1,0 +1,15 @@
+["Aard 2 for Android"]
+web = ""
+source = ""
+platforms = [ "Android",]
+license = "GPL"
+plang = "Java"
+# no auto-RTL (in plaintext or html)
+
+["Aard2 for Web"]
+web = ""
+source = ""
+platforms = [ "Web",]
+license = "MPL"
+plang = "Java"
+# auto-RTL works in plaintext mode, but not html

@@ -1,0 +1,11 @@
+["LibreOffice Calc"]
+web = ""
+source = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "MPL/GPL"
+plang = "C++"
+
+["Microsoft Excel"]
+web = ""
+platforms = [ "Windows",]
+license = "Proprietary"

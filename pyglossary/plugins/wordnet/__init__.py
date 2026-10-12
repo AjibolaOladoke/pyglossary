@@ -1,0 +1,53 @@
+"""
+PyGlossary WordNet format plugin.
+
+Princeton WordNet lexical database files. Read-only ``Reader`` maps synsets,
+lemmas, and gloss text into glossary entries for English WordNet distributions.
+"""
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+from pyglossary.option import StrOption
+
+from .reader import Reader
+
+if TYPE_CHECKING:
+	from pyglossary.option import Option
+
+__all__ = [
+	"Reader",
+	"description",
+	"enable",
+	"extensionCreate",
+	"extensions",
+	"kind",
+	"lname",
+	"name",
+	"optionsProp",
+	"singleFile",
+	"website",
+	"wiki",
+]
+
+enable = True
+lname = "wordnet"
+name = "Wordnet"
+description = "WordNet"
+extensions = ()
+extensionCreate = ""
+singleFile = False
+kind = "directory"
+wiki = ""
+website = (
+	"",
+	"WordNet - A Lexical Database for English",
+)
+
+# key is option/argument name, value is instance of Option
+optionsProp: dict[str, Option] = {
+	"gram_color": StrOption(
+		comment="Grammar color",
+	),
+}

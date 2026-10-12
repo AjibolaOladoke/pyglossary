@@ -1,0 +1,13 @@
+[Dictionary]
+web = ""
+source = ""
+platforms = [ "Android",]
+license = "Apache License 2.0"
+plang = "Java"
+
+[DictionaryPC]
+web = ""
+source = ""
+platforms = [ "Windows",]
+license = "Apache License 2.0"
+plang = "Java"

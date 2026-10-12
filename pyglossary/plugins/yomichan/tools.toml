@@ -1,0 +1,7 @@
+["Yomitan"]
+desc = "Pop-up dictionary browser extension. Successor to Yomichan."
+web = ""
+source = ""
+platforms = [ "Chrome", "Firefox", "Edge", "Brave",]
+license = "GPL"
+plang = "JavaScript"

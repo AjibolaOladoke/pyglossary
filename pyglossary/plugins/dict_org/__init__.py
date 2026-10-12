@@ -1,0 +1,56 @@
+"""
+PyGlossary DICT.org format plugin.
+
+DICT protocol index files (``.index``) paired with definition databases.
+Registers ``Reader`` and ``Writer`` for the classic DICT.org on-disk layout
+used by dictd and related tools.
+"""
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+from pyglossary.flags import DEFAULT_NO
+from pyglossary.option import BoolOption
+
+from .reader import Reader
+from .writer import Writer
+
+if TYPE_CHECKING:
+	from pyglossary.option import Option
+
+__all__ = [
+	"Reader",
+	"Writer",
+	"description",
+	"enable",
+	"extensionCreate",
+	"extensions",
+	"kind",
+	"lname",
+	"name",
+	"optionsProp",
+	"singleFile",
+	"website",
+	"wiki",
+]
+
+enable = True
+lname = "dict_org"
+name = "DictOrg"
+description = "DICT.org file format (.index)"
+extensions = (".index",)
+extensionCreate = ""
+singleFile = False
+optionsProp: dict[str, Option] = {
+	"dictzip": BoolOption(comment="Compress .dict file to .dict.dz"),
+	"install": BoolOption(comment="Install dictionary to /usr/share/dictd/"),
+}
+sortOnWrite = DEFAULT_NO
+kind = "directory"
+wiki = ""
+website = (
+	"",
+	"The DICT Development Group",
+)
+relatedFormats: list[str] = ["DictOrgSource", "Dictunformat"]

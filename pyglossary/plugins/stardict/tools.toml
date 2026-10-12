@@ -1,0 +1,105 @@
+[AyanDict]
+web = ""
+source = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "GPL"
+plang = "Go"
+
+["GoldenDict-NG by @xiaoyifang"]
+web = ""
+source = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "GPL"
+plang = "C++"
+
+[GoldenDict]
+web = ""
+source = ""
+wiki = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "GPL"
+plang = "C++"
+
+[SilverDict]
+web = ""
+source = ""
+wiki = ""
+platforms = [ "Web",]
+license = "GPL"
+plang = "Python"
+
+[StarDict]
+web = ""
+source = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "GPL"
+plang = "C++"
+
+[QStarDict]
+web = ""
+source = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "GPLv2"
+plang = "C++"
+# active dev in 2025
+
+[KOReader]
+web = ""
+source = ""
+platforms = [ "Android", "Amazon Kindle", "Kobo eReader", "PocketBook", "Cervantes",]
+license = "AGPLv3"
+plang = "Lua"
+
+["sdcv (command line)"]
+web = ""
+source = ""
+platforms = [ "Linux", "Windows", "Mac", "Android",]
+license = "GPLv2"
+plang = "C++"
+
+[QDict]
+web = ""
+source = ""
+platforms = [ "Android",]
+license = "Apache 2.0"
+plang = "Java"
+# last release: 2017/04/16 (keeps crashing on my device, unusable)
+# last commit: 2020/06/24, 2021 (readme)
+# removed from Google Play (in 2025)
+
+["GoldenDict Mobile (Free)"]
+web = ""
+web2 = ""
+platforms = [ "Android",]
+license = "Proprietary (Freemium)"
+
+["GoldenDict Mobile (Full)"]
+web = ""
+web2 = ""
+platforms = [ "Android",]
+license = "Proprietary"
+
+[WordMateX]
+web = ""
+platforms = [ "Android",]
+license = "Proprietary"
+# last release: 2020/01/01, version 2.1.1
+# Google Play says "not compatible with your devices", not letting me
+# download and install, so I downloaded apk from apkcombo.com
+# 2025: Google Play page is gone: 
+# This is the only Android app (not just for StarDict format) I found
+# that supports auto-RTL
+
+["Fora Dictionary"]
+web = ""
+platforms = [ "Android",]
+license = "Proprietary (Freemium)"
+# no dark mode
+# some options show "Premium Feature"
+# has prefix-search-on-type but it's a little slow
+# supports RTL (haven't tested auto-RTL)
+
+["Fora Dictionary Pro"]
+web = ""
+platforms = [ "Android",]
+license = "Proprietary"

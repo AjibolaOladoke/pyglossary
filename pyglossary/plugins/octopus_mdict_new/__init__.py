@@ -1,0 +1,68 @@
+"""
+PyGlossary Octopus MDict (new) format plugin.
+
+MDict ``.mdx`` dictionary archives read through the Octopus MDict reader stack.
+Read-only plugin decodes compressed key blocks and definition records from
+modern MDict engine versions.
+"""
+
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+from pyglossary.option import (
+	BoolOption,
+	EncodingOption,
+)
+
+from .reader import Reader
+
+if TYPE_CHECKING:
+	from pyglossary.option import Option
+
+__all__ = [
+	"Reader",
+	"description",
+	"enable",
+	"extensionCreate",
+	"extensions",
+	"kind",
+	"lname",
+	"name",
+	"optionsProp",
+	"singleFile",
+	"website",
+	"wiki",
+]
+
+enable = True
+lname = "octopus_mdict"
+name = "OctopusMdict"
+description = "Octopus MDict (.mdx)"
+extensions = (".mdx",)
+extensionCreate = ""
+singleFile = False
+kind = "binary"
+wiki = ""
+website = (
+	"",
+	"Download | MDict.cn",
+)
+optionsProp: dict[str, Option] = {
+	"encoding": EncodingOption(),
+	"substyle": BoolOption(
+		comment="Enable substyle",
+	),
+	"same_dir_data_files": BoolOption(
+		comment="Read data files from same directory",
+	),
+	"audio": BoolOption(
+		comment="Enable audio objects",
+	),
+}
+
+docTail = """### `python-lzo` is required for **some** MDX glossaries.
+
+First try converting your MDX file, if failed (`AssertionError` probably),
+then try to install [LZO library and Python binding](../lzo.md).
+"""

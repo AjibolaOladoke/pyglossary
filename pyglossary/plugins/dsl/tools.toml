@@ -1,0 +1,28 @@
+["ABBYY Lingvo"]
+web = ""
+wiki_ru = ""
+platforms = [ "Windows", "Mac", "Android", "iOS", "Windows Mobile", "Symbian",]
+license = "Proprietary"
+
+["GoldenDict-NG by @xiaoyifang"]
+web = ""
+source = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "GPL"
+plang = "C++"
+
+[GoldenDict]
+web = ""
+source = ""
+wiki = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "GPL"
+plang = "C++"
+
+[SilverDict]
+web = ""
+source = ""
+wiki = ""
+platforms = [ "Web",]
+license = "GPL"
+plang = "Python"

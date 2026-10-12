@@ -1,0 +1,24 @@
+["Kiwix Desktop"]
+web = ""
+platforms = [ "Linux", "Windows",]
+license = "GPL"
+
+["Kiwix JS"]
+web = ""
+platforms = [ "Windows",]
+license = "GPL"
+
+["Kiwix Serve"]
+web = ""
+platforms = [ "Linux", "Windows",]
+license = "GPL"
+
+["Kiwix for Apple Mac OS X"]
+web = "macos.kiwix.org"
+platforms = [ "Mac",]
+license = ""
+
+["Kiwix for Android"]
+web = ""
+platforms = [ "Android",]
+license = "GPL"

@@ -1,0 +1,24 @@
+["Amazon Kindle"]
+web = ""
+platforms = [ "Amazon Kindle",]
+license = "Proprietary"
+
+[calibre]
+web = ""
+wiki = ")"
+repo = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "GPL"
+
+[Okular]
+web = ""
+wiki = ""
+repo = ""
+platforms = [ "Linux", "Windows", "Mac",]
+license = "GPL"
+
+["Book Reader"]
+web = ""
+repo = ""
+platforms = [ "Android",]
+license = "GPL"
